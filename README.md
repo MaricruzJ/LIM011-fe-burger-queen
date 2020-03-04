@@ -1,26 +1,8 @@
 # Burger Queen
 
-## Preámbulo
-
-[React](https://reactjs.org/), [Vue](https://es.vuejs.org/index.html) y [Angular](https://angular.io/)
-son algunos de los _frameworks_ y _librerías_ de JavaScript más utilizados por
-lxs desarrolladorxs alrededor del mundo, y hay una razón para eso.
-En el contexto del navegador, [_mantener la interfaz sincronizada con el estado
-es difícil_](https://medium.com/dailyjs/the-deepest-reason-why-modern-javascript-frameworks-exist-933b86ebc445).
-Al elegir un _framework_ o _librería_ para nuestra interfaz, nos apoyamos en una
-serie de convenciones e implementaciones _probadas_ y _documentadas_ para
-resolver un problema común a toda interfaz web. Esto nos permite concentrarnos
-mejor (dedicar más tiempo) en las características _específicas_ de
-nuestra aplicación.
-
-Cuando elegimos una de estas tecnologías no solo importamos un pedacito de
-código para reusarlo (lo cuál es un gran valor per se), si no que adoptamos una
-**arquitectura**, una serie de **principios de diseño**, un **paradigma**, unas
-**abstracciones**, un **vocabulario**, una **comunidad**, etc...
-
-Como desarrolladora Front-end, estos kits de desarrollo pueden resultarte
-de gran ayuda para implementar rápidamente características de los proyectos en
-los que trabajes.
+# Descripcioón del proyecto
+Es una PWA (Progressive Web App) de una empresa de hamburguesas que trabaja las 24 hrs, se encarga de mejorar 
+el proceso de entrada de pedidos entre el receptor del pedido y el encargado de cocina.
 
 ## Resumen del proyecto
 
@@ -131,37 +113,6 @@ pendientes de tu proyecto anterior.
 - [ ] [Uso de Observables](https://angular.io/guide/observables-in-angular)
 - [ ] [Uso de HttpClient](https://angular.io/guide/http)
 - [ ] [Estilos de componentes (ngStyle / ngClass)](https://angular.io/guide/template-syntax#built-in-directives)
-
-
-### React
-
-- [ ] [`JSX`](https://es.reactjs.org/docs/introducing-jsx.html)
-- [ ] [Componentes `class` y componentes `function`](https://es.reactjs.org/docs/components-and-props.html#function-and-class-components)
-- [ ] `props`
-- [ ] [Manejo de eventos](https://es.reactjs.org/docs/handling-events.html)
-- [ ] [Listas y keys](https://es.reactjs.org/docs/lists-and-keys.html)
-- [ ] [Renderizado condicional](https://es.reactjs.org/docs/conditional-rendering.html)
-- [ ] [Levantamiento de estados](https://es.reactjs.org/docs/lifting-state-up.html)
-- [ ] [`hooks`](https://es.reactjs.org/docs/hooks-intro.html)
-- [ ] [`CSS` modules](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)
-- [ ] [React Router](https://reacttraining.com/react-router/web)
-
-
-
-### Vue
-
-- [Instancia de Vue.js](https://es.vuejs.org/v2/guide/instance.html)
-- [Datos y métodos](https://es.vuejs.org/v2/guide/instance.html#Datos-y-Metodos)
-- [Uso y creación de Componentes](https://vuejs.org/v2/guide/components.html)
-- [Props](https://es.vuejs.org/v2/guide/components.html#Pasando-datos-a-componentes-secundarios-con-Props)
-- Directivas ([v-bind](https://es.vuejs.org/v2/api/#v-bind) | [v-model](https://es.vuejs.org/v2/guide/forms.html))
-- Renderizado condicional ([v-if](https://es.vuejs.org/v2/guide/conditional.html#v-if) | [v-else](https://es.vuejs.org/v2/guide/conditional.html#v-else))
-- Iteraciones ([v-for](https://es.vuejs.org/v2/guide/list.html#Mapeando-una-matriz-a-elementos-con-v-for))
-- Eventos ([v-on](https://es.vuejs.org/v2/guide/events.html))
-- [Propiedades Computadas y Observadores](https://es.vuejs.org/v2/guide/computed.html)
-- [Router](https://router.vuejs.org/guide/#html)
-- [Clases y Estilos](https://es.vuejs.org/v2/guide/class-and-style.html)
-
 
 ### Firebase
 
