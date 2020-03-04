@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FirestoreService } from '../../services/firestore/firestore.service';
 
 @Component({
   selector: 'app-product',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductComponent implements OnInit {
 
-  constructor() { }
+  public products = [];
+
+  constructor(
+    private firestoreService: FirestoreService
+  ) { }
 
   ngOnInit(): void {
+    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
+      this.products = [];
+      productsSnapshot.forEach((productsData: any) => {
+        this.products.push({
+          id: productsData.payload.doc.id,
+          data: productsData.payload.doc.data()
+        });
+      })
+    });
   }
-
 }
