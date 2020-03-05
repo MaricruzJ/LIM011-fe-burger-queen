@@ -6,9 +6,10 @@ app-header{
 main{
   display: flex;
   app-product-catalog{
-    width: 60%;
+    width: 50%;
   }
   app-order{
-    width: 40%;
+    padding-left: 5%;
+    width: 45%;
   }
 }
