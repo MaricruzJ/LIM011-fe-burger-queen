@@ -7,7 +7,7 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-
+  
   public products = [];
 
   constructor(
@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
       productsSnapshot.forEach((productsData: any) => {
         this.products.push({
           id: productsData.payload.doc.id,
-          data: productsData.payload.doc.data()
+          data: productsData.payload.doc.data(),
         });
       })
     });
