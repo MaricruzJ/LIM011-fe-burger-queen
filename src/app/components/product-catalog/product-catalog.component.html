@@ -1,6 +1,6 @@
-<button>CLÁSICOS</button>
-<button>BEBIDAS</button>
-<button>PIQUEOS</button>
+<button (click) = "getClassic()">CLÁSICOS</button>
+<button (click) = "getDrinks()">BEBIDAS</button>
+<button (click) = "getPiqueos()">PIQUEOS</button>
 <div class="contain-products">
-  <app-product></app-product>
+  <app-product [products] = "productsFilter"></app-product>
 </div>

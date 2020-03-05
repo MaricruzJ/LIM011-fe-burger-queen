@@ -1,5 +1,5 @@
-<div *ngFor="let product of products" class="contain-detail">
+<div *ngFor = "let product of products" class="contain-detail">
   <img [src]="product.data.image" alt="image of product" class="img-medium">
-  <p>{{product.data.name}}</p>
-  <p>{{'$ '}}{{product.data.price}}</p>
+  <p>{{ product.data.name }}</p>
+  <p>{{ '$ ' }}{{ product.data.price }}</p>
 </div>
