@@ -1,0 +1,24 @@
+form{
+  display: flex;
+  padding: 8px;
+  justify-content: center;
+  align-items: center;
+}
+
+.customer{
+  width: 85%;
+}
+
+.number-table{
+  width: 10%;
+}
+
+input{
+  height: 36px;
+  border-radius: 8px;
+  padding-left: 4px;
+  border: 1px solid gray;
+  margin: 0px 8px;
+  font-size: 16px;
+  outline: none;
+}

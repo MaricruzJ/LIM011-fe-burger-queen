@@ -1,0 +1,15 @@
+app-header{
+  color: chocolate;
+  text-align: center;
+  width: 100%;
+}
+main{
+  display: flex;
+  app-product-catalog{
+    width: 50%;
+  }
+  app-order{
+    padding-left: 5%;
+    width: 45%;
+  }
+}

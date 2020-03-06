@@ -6,14 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FirestoreService {
+  constructor(private firestore: AngularFirestore) { }
 
-  constructor(
-    private firestore: AngularFirestore
-  ) { }
-
-  //Obtiene todos productos
   public getProducts() {
     return this.firestore.collection('products').snapshotChanges();
   }
+
+  // public getProductsFilter(category: string){
+  //   this.firestore.collection('products').where()
+  // }
 
 }
