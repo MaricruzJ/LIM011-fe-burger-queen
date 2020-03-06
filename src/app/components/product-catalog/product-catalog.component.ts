@@ -8,8 +8,8 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 })
 export class ProductCatalogComponent implements OnInit {
 
-  public products = [];
-  public productsFilter = [];
+  public products: any[];
+  public productsFilter: any[];
 
   constructor(private firestoreService: FirestoreService) { }
 
@@ -25,19 +25,7 @@ export class ProductCatalogComponent implements OnInit {
     });
   }
 
-  getClassic() {
-    this.productsFilter = this.products.filter((product) => product.data.category === 'classic');
-  }
-
-  getDrinks() {
-    this.productsFilter = this.products.filter((product) => product.data.category === 'drinks');
-  }
-
-  getPiqueos() {
-    this.productsFilter = this.products.filter((product) => product.data.category === 'piqueos');
-  }
-
-  getExtras() {
-    this.productsFilter = this.products.filter((product) => product.data.category === 'extras');
+  getByCategory(nameCategory: string) {
+    this.productsFilter = this.products.filter((product) => product.data.category === nameCategory);
   }
 }
