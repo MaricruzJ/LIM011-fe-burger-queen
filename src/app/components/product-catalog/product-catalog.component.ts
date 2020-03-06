@@ -27,21 +27,17 @@ export class ProductCatalogComponent implements OnInit {
 
   getClassic() {
     this.productsFilter = this.products.filter((product) => product.data.category === 'classic');
-    console.log(this.productsFilter);
   }
 
   getDrinks() {
     this.productsFilter = this.products.filter((product) => product.data.category === 'drinks');
-    console.log(this.productsFilter);
   }
 
   getPiqueos() {
     this.productsFilter = this.products.filter((product) => product.data.category === 'piqueos');
-    console.log(this.productsFilter);
   }
 
   getExtras() {
     this.productsFilter = this.products.filter((product) => product.data.category === 'extras');
-    console.log(this.productsFilter);
   }
 }
