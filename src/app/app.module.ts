@@ -16,7 +16,7 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
     HeaderComponent,
     ProductComponent,
     OrderComponent,
-    ProductCatalogComponent
+    ProductCatalogComponent,
   ],
   imports: [
     BrowserModule,
