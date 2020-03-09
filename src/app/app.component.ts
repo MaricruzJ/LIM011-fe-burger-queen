@@ -8,4 +8,7 @@ import 'firebase/firestore';
 })
 export class AppComponent {
   title = 'burgerQueen';
+  constructor() {
+  }
+
 }

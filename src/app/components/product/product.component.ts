@@ -8,8 +8,8 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 })
 export class ProductComponent implements OnInit {
   @Input() products: any[];
-
-  constructor() { }
-
+  constructor() {
+   }
+ 
   ngOnInit(): void { }
 }
