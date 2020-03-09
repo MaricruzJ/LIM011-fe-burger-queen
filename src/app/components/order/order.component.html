@@ -1,6 +1,6 @@
 <form>
-  <label for = "">Cliente</label>
-  <input id = "" type="text" class="customer">
+  <label for="">Cliente</label>
+  <input id="" type="text" class="customer">
   <label for="">N° de mesa</label>
   <input type="number" class="number-table">
 </form>
@@ -13,17 +13,17 @@
   </tr>
   <tr>
     <td>
-      <button>-</button>
-      <label>contador</label>
-      <button>+</button>
+      <button (click)="subtract()">-</button>
+      <label>{{ quantity }}</label>
+      <button (click)="add()">+</button>
     </td>
     <td> Nombre del producto</td>
     <td>Precio del producto</td>
   </tr>
-<tr>
-  <td>Total</td>
-  <td></td>
-  <td>Monto en Dolares</td>
-</tr>
+  <tr>
+    <td>Total</td>
+    <td></td>
+    <td>Monto en Dolares</td>
+  </tr>
 </table>
 <button>Enviar a cocina</button>

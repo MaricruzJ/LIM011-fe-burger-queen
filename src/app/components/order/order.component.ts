@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderComponent implements OnInit {
 
+  public quantity = 1;
+
   constructor() { }
 
   ngOnInit(): void {
+
+  }
+
+  add() {
+    this.quantity = this.quantity + 1;
+  }
+
+  subtract() {
+    this.quantity = this.quantity - 1;
   }
 
 }
