@@ -8,8 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ModalComponent implements OnInit {
 
   constructor() { }
-  @Input() show:boolean = false;
-  @Input() customClass:string = '';
+  @Input() show = false;
+  @Input() customClass = '';
   @Input() productSelected:any;
   @Input() closeCallback = () => (false);
 
