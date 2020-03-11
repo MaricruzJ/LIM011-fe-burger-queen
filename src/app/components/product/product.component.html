@@ -1,5 +1,8 @@
-<div *ngFor = "let product of products" class="contain-detail">
-  <img [src]="product.data.image" alt="image of product" class="img-medium">
-  <p>{{ product.data.name }}</p>
-  <p>{{ '$ ' }}{{ product.data.price }}</p>
+<div *ngFor="let product of products" class="contain-detail">
+    <div (click) = "check(product.data.popup, product.id)">
+        <img [src]="product.data.image" alt="image of product" class="img-medium">
+        <p>{{ product.data.name }}</p>
+        <p>{{ '$ ' }}{{ product.data.price }}</p>
+    </div>
 </div>
+<app-modal [show] = "showModal" [productSelected] = "productSelected" [customClass] ="'custom_modal_class'" [closeCallback]="toggleModal"></app-modal>

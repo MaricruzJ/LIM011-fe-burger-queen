@@ -6,6 +6,7 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
   templateUrl: './product-catalog.component.html',
   styleUrls: ['./product-catalog.component.scss']
 })
+
 export class ProductCatalogComponent implements OnInit {
 
   public products: any[];
