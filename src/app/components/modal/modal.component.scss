@@ -56,6 +56,21 @@
   .modal .close_modal:hover {
     opacity: 0.9;
   }
+  
+  img{
+    height: 80px;
+    width: 80px;
+    border-radius: 25%;
+    border: solid 1px #c9c9c9;
+    padding: 8px;
+    margin-top: 16px;
+  }
+  
+  p{
+    font-size: 18px;
+    margin: 0px;
+  }
+  
 }
 
 @media (min-width: 320px) {
@@ -125,6 +140,20 @@
   
   .modal .close_modal:hover {
     opacity: 0.9;
+  }
+
+  img{
+    height: 80px;
+    width: 80px;
+    border-radius: 25%;
+    border: solid 1px #c9c9c9;
+    padding: 8px;
+    margin-top: 16px;
+  }
+  
+  p{
+    font-size: 18px;
+    margin: 0px;
   }
 }
 

@@ -6,5 +6,5 @@
         <p>{{ '$ ' }}{{ product.data.price }}</p>
     </div>
 </div>
-<app-modal [show] = "showModal" [productSelected] = "productSelected" [customClass] ="'custom_modal_class'" [closeCallback]="toggleModal">
+<app-modal [productsExtras]="productsExtras" [show] = "showModal" [productSelected] = "productSelected" [customClass] ="'custom_modal_class'" [closeCallback]="toggleModal">
 </app-modal>

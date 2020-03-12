@@ -8,7 +8,9 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 })
 export class ProductComponent implements OnInit {
   @Input() products: any[];
+  @Input() productsExtras: any[];
   public productSelected: any = {}
+  public showExtras: any = {}
   showModal = false;
 
   constructor() {
@@ -16,20 +18,14 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  // check(popup, id) {
-  //   if (popup) this.toggleModal(id)
-  // }
-
-  toggleModal(id){
-    console.log(id)
-    if (id !== null || id!== undefined) {  
-      this.productSelected = this.products.find(product => product.id === id)
-    console.log(this.productSelected)
-    if(this.productSelected.data.popup === true){
+  toggleModal = (id) => {
+    if (id != null) {
+      this.productSelected = this.products.find((product) => product.id === id)
+    }
+    if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
     }
-    }
   }
-  
+
 }
 
