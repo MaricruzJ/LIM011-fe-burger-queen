@@ -8,8 +8,24 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
 })
 export class ProductComponent implements OnInit {
   @Input() products: any[];
+  @Input() productsExtras: any[];
+  public productSelected: any = {};
+  public showExtras: any = {};
+  showModal = false;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void { }
+
+  toggleModal = (id) => {
+    if (id != null) {
+      this.productSelected = this.products.find((product) => product.id === id)
+    }
+    if (this.productSelected.data.popup === true) {
+      this.showModal = !this.showModal;
+    }
+  }
+
 }
+

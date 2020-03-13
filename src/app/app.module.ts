@@ -18,7 +18,7 @@ import { ModalComponent } from './components/modal/modal.component';
     ProductComponent,
     OrderComponent,
     ProductCatalogComponent,
-    ModalComponent
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
