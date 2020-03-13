@@ -1,13 +1,15 @@
 <div [ngClass]="customClass || '' " class="modal" [ngStyle]="{display: show ? 'block' : 'none'}">
-    <div class="overlay" (click)="closeCallback()"></div>
-    <div class="modal_content">
-      <button title="Close" class="close_modal" (click)="closeCallback()">X</button>
-      <h2>Extras</h2>
-      <div *ngFor= "let productExtra of productsExtras">
+  <div class="overlay" (click)="closeCallback()"></div>
+  <div class="modal_content">
+    <button title="Close" class="close_modal" (click)="closeCallback()">X</button>
+    <h2>Extras</h2>
+    <div class="container">
+      <div *ngFor="let productExtra of productsExtras">
         <img [src]="productExtra.data.image" alt="image of product" class="img-medium">
         <p>{{ productExtra.data.name }}</p>
         <p>{{ '$ ' }}{{ productExtra.data.price }}</p>
       </div>
-      <button>Aceptar</button>
     </div>
+    <button>Aceptar</button>
   </div>
+</div>

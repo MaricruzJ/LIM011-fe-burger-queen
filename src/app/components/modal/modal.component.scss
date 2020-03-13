@@ -110,8 +110,9 @@
     h2{
       color: #0074C5;
     }
-    p{
-      text-align: justify;
+    .container{
+    display: flex;
+    justify-content: space-evenly;
     }
   }
   
