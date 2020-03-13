@@ -11,6 +11,7 @@ export class ProductCatalogComponent implements OnInit {
 
   public products: any[];
   public productsFilter: any[];
+  public productsExtras: any[];
 
   constructor(private firestoreService: FirestoreService) {
 
@@ -26,11 +27,16 @@ export class ProductCatalogComponent implements OnInit {
         });
       });
       this.productsFilter = this.products.filter((product) => product.data.category === 'classic')
+      this.productsExtras = this.products.filter((product) => product.data.category === 'extras')
     });
   }
 
   getByCategory(nameCategory: string) {
     this.productsFilter = this.products.filter((product) => product.data.category === nameCategory)
+    this.productsExtras = [];
+    if (nameCategory === 'classic') {
+      this.productsExtras = this.products.filter((product) => product.data.category === 'extras')
+    }
+    console.log(this.productsExtras)
   }
-
 }
