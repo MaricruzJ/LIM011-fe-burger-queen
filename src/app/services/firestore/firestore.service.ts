@@ -11,9 +11,4 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('products').snapshotChanges();
   }
-
-  // public getProductsFilter(category: string){
-  //   this.firestore.collection('products').where()
-  // }
-
 }

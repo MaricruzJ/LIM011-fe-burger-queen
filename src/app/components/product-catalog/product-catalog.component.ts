@@ -37,6 +37,5 @@ export class ProductCatalogComponent implements OnInit {
     if (nameCategory === 'classic') {
       this.productsExtras = this.products.filter((product) => product.data.category === 'extras')
     }
-    console.log(this.productsExtras);
   }
 }

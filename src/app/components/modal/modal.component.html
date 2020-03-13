@@ -5,9 +5,11 @@
     <h2>Extras</h2>
     <div class="container">
       <div *ngFor="let productExtra of productsExtras">
-        <img [src]="productExtra.data.image" alt="image of product" class="img-medium">
-        <p>{{ productExtra.data.name }}</p>
-        <p>{{ '$ ' }}{{ productExtra.data.price }}</p>
+        <div (click) = "getExtras(productExtra.id)">
+          <img [src]="productExtra.data.image" alt="image of product" class="img-medium">
+          <p>{{ productExtra.data.name }}</p>
+          <p>{{ '$ ' }}{{ productExtra.data.price }}</p>
+        </div>
       </div>
     </div>
     <button>Aceptar</button>
