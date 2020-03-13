@@ -22,6 +22,7 @@ export class ProductCatalogComponent implements OnInit {
           data: productData.payload.doc.data()
         });
       });
+      this.productsFilter = this.products.filter((product) => product.data.category === 'classic');
     });
   }
 

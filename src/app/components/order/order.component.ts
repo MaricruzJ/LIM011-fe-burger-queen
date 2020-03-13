@@ -20,7 +20,8 @@ export class OrderComponent implements OnInit {
   }
 
   subtract() {
-    this.quantity = this.quantity - 1;
+    if (this.quantity >= 1) {
+      this.quantity = this.quantity - 1;
+    }
   }
-
 }
