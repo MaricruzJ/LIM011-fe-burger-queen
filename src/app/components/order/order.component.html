@@ -11,19 +11,19 @@
     <th>Descripción</th>
     <th>Precio</th>
   </tr>
-  <tr>
+  <tr *ngFor = "let arr of arrOrder">
     <td>
       <button (click)="subtract()">-</button>
-      <label>{{ quantity }}</label>
+      <label>  {{ quantity }}  </label>
       <button (click)="add()">+</button>
     </td>
-    <td> Nombre del producto</td>
-    <td>Precio del producto</td>
+    <td> {{arr.data.name}} </td>
+    <td> $ {{arr.data.price}} </td>
   </tr>
   <tr>
     <td>Total</td>
     <td></td>
-    <td>Monto en Dolares</td>
+    <td>Monto Total</td>
   </tr>
 </table>
 <button>Enviar a cocina</button>

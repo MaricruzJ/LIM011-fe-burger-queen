@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FirestoreService } from '../../services/firestore/firestore.service';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-product',
@@ -12,15 +12,13 @@ export class ProductComponent implements OnInit {
   public productSelected: any = {};
   public showExtras: any = {};
   showModal = false;
-  /*  public arrayOrder = [
-     { cantidad: 1, principal: {}, extras: ['queso', 'huevo'] },
-     { cantidad: 1, principal: {}, extras: [] },
-     { cantidad: 1, principal: {}, extras: ['queso'] },
-     { cantidad: 1, principal: {}, extras: ['huevo'] }
-   ]; */
   public arrayOrder = [];
 
-  constructor() { }
+  constructor(private orderService: OrderService) {
+    this.orderService.currentOrder.subscribe(array => {
+      this.arrayOrder = array;
+    });
+  }
 
   ngOnInit(): void { }
 
@@ -32,7 +30,7 @@ export class ProductComponent implements OnInit {
       this.showModal = !this.showModal;
     }
     this.arrayOrder.push(this.productSelected);
-    console.log(this.arrayOrder);
+    this.orderService.changeOrder(this.arrayOrder);
   }
 }
 
