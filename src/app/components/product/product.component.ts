@@ -11,7 +11,6 @@ export class ProductComponent implements OnInit {
   @Input() productsExtras: any[];
   public productSelected: any = {};
   public showExtras: any = {};
-  showModal = false;
   public arrayOrder = [];
 
   constructor(private orderService: OrderService) {
@@ -33,4 +32,3 @@ export class ProductComponent implements OnInit {
     this.orderService.changeOrder(this.arrayOrder);
   }
 }
-
