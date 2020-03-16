@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from 'src/app/services/order/order.service';
+import { OrderItem } from 'src/app/interfaces/order-item';
 
 @Component({
   selector: 'app-product',
@@ -12,6 +13,7 @@ export class ProductComponent implements OnInit {
   showModal = false;
   public productSelected: any = {};
   public showExtras: any = {};
+  public item: OrderItem;
   public arrayOrder = [];
 
   constructor(private orderService: OrderService) {
@@ -28,10 +30,24 @@ export class ProductComponent implements OnInit {
     }
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
+    } else {
+      this.item = {
+        id: '01',
+        quantity: 1,
+        product: this.productSelected.data.name,
+        extra: [],
+        amount: this.productSelected.data.price,
+      }
+      this.arrayOrder.push(this.item);
     }
-    const x = new Set(this.arrayOrder);
-    console.log(x);
-    this.arrayOrder.push(this.productSelected);
     this.orderService.addProductToOrder(this.arrayOrder);
+  }
+  // getArray: any;
+  getArrayOfExtras(getPrueba:any){
+    // this.getArray = 
+    getPrueba;
+    console.log(getPrueba);
+    
+    // console.log(this.getArray);
   }
 }

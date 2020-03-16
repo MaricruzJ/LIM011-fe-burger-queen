@@ -17,8 +17,11 @@
       <label> {{ quantity }} </label>
       <button (click)="add()"> + </button>
     </td>
-    <td> {{arr.data.name}} </td>
-    <td> $ {{arr.data.price}} </td>
+    <td> {{arr.product}} </td>
+    <td> $ {{arr.amount}} </td>
+    <td>
+      <button>X</button>
+    </td>
   </tr>
   <tr>
     <td>Total</td>
