@@ -12,7 +12,7 @@ export class ProductComponent implements OnInit {
   public productSelected: any = {};
   public showExtras: any = {};
   public arrayOrder = [];
-
+  showModal = false;
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrayOrder = array;
