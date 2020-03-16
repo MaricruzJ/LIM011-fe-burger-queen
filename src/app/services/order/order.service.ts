@@ -8,7 +8,7 @@ export class OrderService {
   currentOrder = this.arrayOrder.asObservable();
   constructor() { }
 
-  changeOrder(value) {
+  addProductToOrder(value) {
     this.arrayOrder.next(value);
   }
 }

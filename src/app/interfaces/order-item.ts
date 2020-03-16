@@ -12,11 +12,10 @@
   { cantidad: 1, principal: {}, extras: ['huevo'] }
 ]; */
 
-export interface Order {
+export interface OrderItem {
   id: string;
   quantity: number;
   product: string;
   extra: object;
   amount: number;
-  date: string;
 }
