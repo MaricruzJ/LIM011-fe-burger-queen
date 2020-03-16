@@ -9,6 +9,7 @@ import { OrderService } from 'src/app/services/order/order.service';
 export class ProductComponent implements OnInit {
   @Input() products: any[];
   @Input() productsExtras: any[];
+  showModal = false;
   public productSelected: any = {};
   public showExtras: any = {};
   public arrayOrder = [];
@@ -28,7 +29,9 @@ export class ProductComponent implements OnInit {
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
     }
+    const x = new Set(this.arrayOrder);
+    console.log(x);
     this.arrayOrder.push(this.productSelected);
-    this.orderService.changeOrder(this.arrayOrder);
+    this.orderService.addProductToOrder(this.arrayOrder);
   }
 }

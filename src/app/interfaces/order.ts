@@ -1,7 +1,9 @@
 /* export interface Order {
+  id: string;
   quantity: number;
-  main: object;
+  product: object;
   extra: object;
+  amount: number;
   date: string;
 } */
 
@@ -15,7 +17,7 @@
 export interface Order {
   id: string;
   quantity: number;
-  product: string;
+  product: object;
   extra: object;
   amount: number;
   date: string;

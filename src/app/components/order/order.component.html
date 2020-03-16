@@ -13,9 +13,9 @@
   </tr>
   <tr *ngFor = "let arr of arrOrder">
     <td>
-      <button (click)="subtract()">-</button>
-      <label>  {{ quantity }}  </label>
-      <button (click)="add()">+</button>
+      <button (click)="subtract()"> - </button>
+      <label> {{ quantity }} </label>
+      <button (click)="add()"> + </button>
     </td>
     <td> {{arr.data.name}} </td>
     <td> $ {{arr.data.price}} </td>
