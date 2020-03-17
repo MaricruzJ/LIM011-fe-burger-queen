@@ -9,33 +9,26 @@ export class ModalComponent implements OnInit {
 
   constructor() { }
 
-  public productExtraSelected: any;
-  @Input() arrayOrder: object[];
+  extrasSelected: any = [];
   @Input() productsExtras: any;
   @Input() show = false;
   @Input() customClass = '';
-  @Input() productSelected: any;
-  @Input() closeCallback = () => (false);
   @Output() sendArrayOfExtras: EventEmitter<any> = new EventEmitter<any>();
+  @Input() closeCallback = () => (false);
 
   ngOnInit(): void { }
-  repeatedExtras = [];
 
-  getPrueba: any = [];
-
-  getExtras(id: string) {
-    this.productExtraSelected = this.productsExtras.find((product) => product.id === id);
-    this.getPrueba.push(this.productExtraSelected)
-
-    this.getPrueba.forEach((extraSelect) => {
-      this.repeatedExtras[extraSelect] = ((this.repeatedExtras[extraSelect] || 0) + 1) %2;
-      console.log(extraSelect);
-      // if(extraSelect.id)
-    });
+  getExtraSelected(productExtraSelected: any) {
+    const position = this.extrasSelected.findIndex((product) => product.id === productExtraSelected.id);
+    if (position !== -1) {
+      this.extrasSelected.splice(position, 1);
+    } else {
+      this.extrasSelected.push(productExtraSelected);
+    }
   }
 
-  addExtras(){
-    console.log(this.repeatedExtras);
-    this.sendArrayOfExtras.emit(this.getPrueba);
+  addExtras() {
+    this.sendArrayOfExtras.emit(this.extrasSelected);
+    this.extrasSelected = [];
   }
 }

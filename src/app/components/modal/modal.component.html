@@ -5,7 +5,7 @@
     <h2>Extras</h2>
     <div class="container">
       <div *ngFor="let productExtra of productsExtras">
-        <div (click) = "getExtras(productExtra.id)">
+        <div (click) = "getExtraSelected(productExtra)">
           <img [src]="productExtra.data.image" alt="image of product" class="img-medium">
           <p>{{ productExtra.data.name }}</p>
           <p>{{ '$ ' }}{{ productExtra.data.price }}</p>
