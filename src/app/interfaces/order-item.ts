@@ -11,4 +11,5 @@ export interface OrderItem {
   product: object;
   extra: object;
   amount: number;
+  priceUnit: number;
 }

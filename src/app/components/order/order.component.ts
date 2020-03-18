@@ -10,23 +10,40 @@ export class OrderComponent implements OnInit {
 
   public quantity = 1;
   arrOrder: object[];
+  objectItem: object;
+  indice: string;
+  total: number;
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
-      console.log(this.arrOrder);
     });
   }
 
   ngOnInit(): void { }
 
-  add() {
-    this.quantity = this.quantity + 1;
+  add(objectItem) {
+    this.indice= this.arrOrder.indexOf(objectItem).toString()
+    this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
+    this.arrOrder[this.indice].amount =this.arrOrder[this.indice].priceUnit*this.arrOrder[this.indice].quantity 
+
+    console.log(this.arrOrder);
+    // console.log(this.total);
+    
+
+    
   }
 
-  subtract() {
-    if (this.quantity >= 1) {
-      this.quantity = this.quantity - 1;
+  subtract(objectItem) {
+    this.indice= this.arrOrder.indexOf(objectItem).toString()
+    if (this.arrOrder[this.indice].quantity >= 1) {
+      this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity - 1;
     }
+    // // this.total =this.arrOrder[this.indice].amount*this.arrOrder[this.indice].quantity 
+    // console.log(this.total);
+    this.arrOrder[this.indice].amount =this.arrOrder[this.indice].priceUnit*this.arrOrder[this.indice].quantity 
+
+    console.log(this.arrOrder);
+
   }
 }

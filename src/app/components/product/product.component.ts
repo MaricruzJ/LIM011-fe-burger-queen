@@ -16,12 +16,13 @@ export class ProductComponent implements OnInit {
   public item: OrderItem;
   public arrayOrder = [];
   public arrExtras = [];
-  priceExtras = 0;
+  priceExtras: number = 0;
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
-      this.arrayOrder = array;
+      this.arrayOrder = array;      
     });
+    this.priceExtras = 0;
   }
 
   ngOnInit(): void { }
@@ -36,20 +37,27 @@ export class ProductComponent implements OnInit {
   toggleModal = (id: string) => {
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
+      this.productSelected.data.quantity+= this.productSelected.data.quantity
     }
+
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
     }
-    this.item = {
-      id: '01',
+    // if(this.productSelected.){}
+
+      this.item = {
+      id: this.productSelected.id,
       quantity: 1,
       product: this.productSelected.data.name,
       extra: this.arrExtras,
       amount: this.productSelected.data.price + this.priceExtras,
+      priceUnit: this.productSelected.data.price + this.priceExtras,
     };
     if (this.showModal === false) {
       this.arrayOrder.push(this.item);
     }
     this.orderService.addProductToOrder(this.arrayOrder);
+    this.arrExtras = [];
+    this.priceExtras = 0;
   }
 }
