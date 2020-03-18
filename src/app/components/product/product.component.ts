@@ -24,13 +24,20 @@ export class ProductComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  getArrayOfExtras(repeatExtras:any){
+    repeatExtras;
+    console.log(repeatExtras);
+    
+  }
+
   toggleModal = (id: string) => {
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
-    } else {
+    } 
+    else if (this.productsExtras !== []){
       this.item = {
         id: '01',
         quantity: 1,
@@ -42,12 +49,6 @@ export class ProductComponent implements OnInit {
     }
     this.orderService.addProductToOrder(this.arrayOrder);
   }
-  // getArray: any;
-  getArrayOfExtras(getPrueba:any){
-    // this.getArray = 
-    getPrueba;
-    console.log(getPrueba);
-    
-    // console.log(this.getArray);
-  }
+  
+  
 }
