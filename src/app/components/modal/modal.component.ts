@@ -9,52 +9,27 @@ export class ModalComponent implements OnInit {
 
   constructor() { }
 
-  public productExtraSelected: any;
-  @Input() arrayOrder: object[];
+  extrasSelected: any = [];
   @Input() productsExtras: any;
   @Input() show = false;
   @Input() customClass = '';
-  @Input() productSelected: any;
-  @Input() closeCallback = () => (false);
   @Output() sendArrayOfExtras: EventEmitter<any> = new EventEmitter<any>();
+  @Input() closeCallback = () => (false);
 
   ngOnInit(): void { }
 
-  repeat = []
-
-  getPrueba: any = [];
-
-  repeatedExtras = []
-  counter = 0
-
-  getExtras(id: string) {
-    this.productExtraSelected = this.productsExtras.find((product) => product.id === id);
-    this.getPrueba.push(this.productExtraSelected);
-    console.log(this.productsExtras.length);
-
-
-
+  getExtraSelected(productExtraSelected: any) {
+    const position = this.extrasSelected.findIndex((product) => product.id === productExtraSelected.id);
+    if (position !== -1) {
+      this.extrasSelected.splice(position, 1);
+    } else {
+      this.extrasSelected.push(productExtraSelected);
+    }
   }
 
-  repeticiones: number = 0
-
   addExtras() {
-
-    this.productsExtras.forEach((totalExtras) => {
-      this.getPrueba.forEach((extra) => {
-        if (extra.data.name === totalExtras.data.name) {
-          this.repeticiones += 1
-        }
-      })
-      if((this.repeticiones)%2 === 1){
-        this.repeatedExtras.push(totalExtras)
-      }
-      this.repeticiones = 0
-    })
-
-    this.sendArrayOfExtras.emit(this.repeatedExtras)
-
-    this.getPrueba = [];
-    this.repeatedExtras = []
+    this.sendArrayOfExtras.emit(this.extrasSelected);
+    this.extrasSelected = [];
+    this.closeCallback()
   }
 }

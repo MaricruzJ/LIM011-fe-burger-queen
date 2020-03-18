@@ -1,10 +1,3 @@
-/* export interface Order {
-  quantity: number;
-  main: object;
-  extra: object;
-  date: string;
-} */
-
 /* public arrayOrder = [
   { cantidad: 1, principal: {}, extras: ['queso', 'huevo'] },
   { cantidad: 1, principal: {}, extras: [] },
@@ -15,7 +8,8 @@
 export interface OrderItem {
   id: string;
   quantity: number;
-  product: string;
+  product: object;
   extra: object;
   amount: number;
+  priceUnit: number;
 }

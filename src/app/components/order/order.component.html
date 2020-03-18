@@ -11,17 +11,22 @@
     <th>Descripción</th>
     <th>Precio</th>
   </tr>
-  <tr *ngFor = "let arr of arrOrder">
+  <tr *ngFor="let item of arrOrder">
     <td>
-      <button (click)="subtract()">-</button>
-      <label>  {{ quantity }}  </label>
-      <button (click)="add()">+</button>
+      <button (click)="subtract(item)"> - </button>
+      <label> {{ item.quantity }} </label>
+      <button (click)="add(item)"> + </button>
     </td>
-    <td> {{arr.product}} </td>
-    <td> $ {{arr.amount}} </td>
     <td>
-      <button>X</button>
-    </td>
+  <tr>{{item.product}} </tr>
+  <tr *ngIf="item.extra.length > 0">
+    <label *ngFor="let extra of item.extra">{{extra.data.name}} </label>
+  </tr>
+  </td>
+  <td> $ {{item.amount}} </td>
+  <td>
+    <button>X</button>
+  </td>
   </tr>
   <tr>
     <td>Total</td>

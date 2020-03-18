@@ -26,16 +26,16 @@ export class ProductCatalogComponent implements OnInit {
           data: productData.payload.doc.data()
         });
       });
-      this.productsFilter = this.products.filter((product) => product.data.category === 'classic')
-      this.productsExtras = this.products.filter((product) => product.data.category === 'extras')
+      this.productsFilter = this.products.filter((product) => product.data.category === 'classic');
+      this.productsExtras = this.products.filter((product) => product.data.category === 'extras');
     });
   }
 
   getByCategory(nameCategory: string) {
-    this.productsFilter = this.products.filter((product) => product.data.category === nameCategory)
+    this.productsFilter = this.products.filter((product) => product.data.category === nameCategory);
     this.productsExtras = [];
     if (nameCategory === 'classic') {
-      this.productsExtras = this.products.filter((product) => product.data.category === 'extras')
+      this.productsExtras = this.products.filter((product) => product.data.category === 'extras');
     }
   }
 }

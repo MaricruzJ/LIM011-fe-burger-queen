@@ -5,6 +5,6 @@
         <p>{{ '$ ' }}{{ product.data.price }}</p>
     </div>
 </div>
-<app-modal (sendArrayOfExtras)= "getArrayOfExtras($event)" [productsExtras]="productsExtras" [show]="showModal" [productSelected]="productSelected" [arrayOrder] = "arrayOrder"
+<app-modal (sendArrayOfExtras)= "getArrayOfExtras($event)" [productsExtras]="productsExtras" [show]="showModal" 
     [customClass]="'custom_modal_class'" [closeCallback]="toggleModal">
 </app-modal>

@@ -10,45 +10,54 @@ import { OrderItem } from 'src/app/interfaces/order-item';
 export class ProductComponent implements OnInit {
   @Input() products: any[];
   @Input() productsExtras: any[];
+  showModal = false;
   public productSelected: any = {};
   public showExtras: any = {};
   public item: OrderItem;
   public arrayOrder = [];
-  showModal = false;
+  public arrExtras = [];
+  priceExtras: number = 0;
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
-      this.arrayOrder = array;
+      this.arrayOrder = array;      
     });
+    this.priceExtras = 0;
   }
 
   ngOnInit(): void { }
 
-  getArrayOfExtras(repeatExtras:any){
-    repeatExtras;
-    console.log(repeatExtras);
-    
+  getArrayOfExtras(extrasSelected: any) {
+    this.arrExtras = extrasSelected;
+    this.arrExtras.forEach(product => {
+      this.priceExtras += product.data.price;
+    });
   }
 
   toggleModal = (id: string) => {
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
+      this.productSelected.data.quantity+= this.productSelected.data.quantity
     }
+
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
-    } 
-    else if (this.productsExtras !== []){
+    }
+    // if(this.productSelected.){}
+
       this.item = {
-        id: '01',
-        quantity: 1,
-        product: this.productSelected.data.name,
-        extra: [],
-        amount: this.productSelected.data.price,
-      }
+      id: this.productSelected.id,
+      quantity: 1,
+      product: this.productSelected.data.name,
+      extra: this.arrExtras,
+      amount: this.productSelected.data.price + this.priceExtras,
+      priceUnit: this.productSelected.data.price + this.priceExtras,
+    };
+    if (this.showModal === false) {
       this.arrayOrder.push(this.item);
     }
     this.orderService.addProductToOrder(this.arrayOrder);
+    this.arrExtras = [];
+    this.priceExtras = 0;
   }
-  
-  
 }
