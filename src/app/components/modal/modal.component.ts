@@ -30,5 +30,6 @@ export class ModalComponent implements OnInit {
   addExtras() {
     this.sendArrayOfExtras.emit(this.extrasSelected);
     this.extrasSelected = [];
+    this.closeCallback();
   }
 }

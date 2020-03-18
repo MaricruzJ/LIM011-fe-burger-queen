@@ -41,7 +41,7 @@ export class ProductComponent implements OnInit {
       this.showModal = !this.showModal;
     }
     this.item = {
-      id: '01',
+      id: this.productSelected.id,
       quantity: 1,
       product: this.productSelected.data.name,
       extra: this.arrExtras,
@@ -51,5 +51,7 @@ export class ProductComponent implements OnInit {
       this.arrayOrder.push(this.item);
     }
     this.orderService.addProductToOrder(this.arrayOrder);
+    this.arrExtras = [];
+    this.priceExtras = 0;
   }
 }
