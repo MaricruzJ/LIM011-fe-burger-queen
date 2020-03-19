@@ -11,25 +11,33 @@ export class ModalComponent implements OnInit {
 
   extrasSelected: any = [];
   @Input() productsExtras: any;
-  @Input() show = false;
+  @Input() show;
   @Input() customClass = '';
   @Output() sendArrayOfExtras: EventEmitter<any> = new EventEmitter<any>();
-  @Input() closeCallback = () => (false);
+  @Input() closeModal = () => {
+    return false
+  }
 
   ngOnInit(): void { }
 
   getExtraSelected(productExtraSelected: any) {
+    console.log(this.extrasSelected);
+
+    console.log(this.extrasSelected);
+
     const position = this.extrasSelected.findIndex((product) => product.id === productExtraSelected.id);
     if (position !== -1) {
       this.extrasSelected.splice(position, 1);
     } else {
       this.extrasSelected.push(productExtraSelected);
     }
+    console.log(this.extrasSelected);
+
   }
 
   addExtras() {
     this.sendArrayOfExtras.emit(this.extrasSelected);
-    this.extrasSelected = [];
-    this.closeCallback()
+    this.extrasSelected=[]
+    this.closeModal()
   }
 }

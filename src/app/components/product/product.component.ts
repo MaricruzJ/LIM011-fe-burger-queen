@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from 'src/app/services/order/order.service';
 import { OrderItem } from 'src/app/interfaces/order-item';
-import { element } from 'protractor';
 
 @Component({
   selector: 'app-product',
@@ -17,7 +16,9 @@ export class ProductComponent implements OnInit {
   public item: OrderItem;
   public arrayOrder = [];
   public arrExtras = [];
-  priceExtras: number = 0;
+  priceExtras = 0;
+  position = 0
+  changeModalValue = 0
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
@@ -35,19 +36,16 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  position = 0
-  changeModalValue = 0
   toggleModal = (id: string) => {
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
-      this.productSelected.data.quantity += this.productSelected.data.quantity
     }
 
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
       this.changeModalValue = this.changeModalValue + 1
     }
-    console.log(this.changeModalValue);
+    // console.log(this.changeModalValue);
 
 
     //AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
@@ -75,82 +73,28 @@ export class ProductComponent implements OnInit {
 
     // ENCONTRAR LA POSICION DEL ITEM REPETIDO
     this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id)
-    console.log(this.position);
+    // console.log(this.position);
 
+    // console.log(this.changeModalValue);
 
-    if (this.position !== -1 ) {
+    if (this.position !== -1 && this.changeModalValue !== 1) {
       this.item.quantity += this.item.quantity
-      console.log(this.item.quantity);
+      // console.log(this.item.quantity);
       this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
-    } 
+      this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
+      this.changeModalValue = 0
 
+    }
 
-    if (this.showModal === false) {
+    // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
+    if (this.showModal === false && this.position === -1) {
       this.arrayOrder.push(this.item);
       this.arrExtras = [];
       this.priceExtras = 0;
       this.changeModalValue = 0
+
     }
-
-    // (ele.id === this.item.id) elemem de finINdex
-    //   if(position !== -1){
-    //     this.arrayOrder[position].quantity = this.arrayOrder[position].quantity + 1;
-    // }else{
-    //   this.item.quantity = 1
-
-    // }
-    // if (this.showModal === false && position === -1) {
-    //     this.arrayOrder.push(this.item);
-    //     this.arrExtras = [];
-    //     this.priceExtras = 0;
-    //   }
-    //   console.log(position);
-
-    //   console.log(this.item.id);
-
-
-
-
-
-
-
-    // this.position = this.arrayOrder.findIndex((element)=> element === this.item)
-    // console.log(this.position);
-
-
-    // if(this.position !== -1){
-    //   this.item.quantity += this.item.quantity
-    //   console.log(this.item.quantity);
-    //   this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
-    // } else{
-    //   if(this.showModal === false){
-    //     this.arrayOrder.push(this.item);
-    //   }
-    // }
-
-
-    // if (position === -1 && this.showModal === false) {
-    //   this.arrayOrder.push(this.item);
-    //   console.log();
-
-    // } else {
-    //   this.item.quantity += this.item.quantity
-    //   console.log(this.item.quantity);
-    //   this.arrayOrder[position].quantity = this.arrayOrder[position].quantity + 1;
-
-    // }
-
-
-    // if (position !== -1 && this.showModal === true ) {
-    //   this.item.quantity += this.item.quantity
-    //   console.log(this.item.quantity);
-    //   this.arrayOrder[position].quantity = this.arrayOrder[position].quantity + 1;
-    //   // this.item = {}
-
-    // } else if (this.showModal === false) {
-    //   // this.item.quantity += this.item.quantity
-    //   this.arrayOrder.push(this.item);
-    // }
+    console.log(this.arrayOrder);
 
     this.orderService.addProductToOrder(this.arrayOrder);
 
