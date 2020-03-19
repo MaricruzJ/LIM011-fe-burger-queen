@@ -41,7 +41,7 @@ export class OrderComponent implements OnInit {
   }
 
   deleteItem(objectItem) {
-    const position = this.arrOrder.findIndex((product) => product.id === objectItem.id);
+    const position = this.arrOrder.findIndex((product) => product['id'] === objectItem.id);
     if (position !== -1) {
       this.arrOrder.splice(position, 1);
     }
