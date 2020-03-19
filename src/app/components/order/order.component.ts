@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order/order.service';
+import { FormControl, FormGroup } from '@angular/forms';
+import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-order',
@@ -13,8 +15,12 @@ export class OrderComponent implements OnInit {
   objectItem: object;
   indice: string;
   total: number;
+  orderForm = new FormGroup({
+    nameCustomer: new FormControl(''),
+    numberTable: new FormControl(0),
+  });
 
-  constructor(private orderService: OrderService) {
+  constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
     });
@@ -37,7 +43,6 @@ export class OrderComponent implements OnInit {
     if (this.arrOrder[this.indice].quantity === 0) {
       this.deleteItem(objectItem);
     }
-    console.log(this.arrOrder);
   }
 
   deleteItem(objectItem) {
@@ -45,5 +50,19 @@ export class OrderComponent implements OnInit {
     if (position !== -1) {
       this.arrOrder.splice(position, 1);
     }
+  }
+
+  sendOrder() {
+    let amount = 0;
+    /* console.log(this.arrOrder); */
+
+    this.arrOrder.forEach(product => {
+      amount = product.amount + amount;
+    });
+    this.orderForm.value.items = this.arrOrder;
+    this.orderForm.value.date = new Date();
+    this.orderForm.value.amount = amount;
+    /* console.log(this.orderForm.value); */  // enviar al firestore
+    this.firestoreService.setOrder(this.orderForm.value);
   }
 }
