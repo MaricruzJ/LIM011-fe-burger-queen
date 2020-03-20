@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-modal',
@@ -18,9 +19,10 @@ export class ModalComponent implements OnInit {
     return false;
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   getExtraSelected(productExtraSelected: any) {
+    
     const position = this.extrasSelected.findIndex((product) => product.id === productExtraSelected.id);
     if (position !== -1) {
       this.extrasSelected.splice(position, 1);
@@ -31,7 +33,8 @@ export class ModalComponent implements OnInit {
 
   addExtras() {
     this.sendArrayOfExtras.emit(this.extrasSelected);
-    this.extrasSelected = [];
     this.closeModal();
+    this.extrasSelected = [];
   }
+
 }

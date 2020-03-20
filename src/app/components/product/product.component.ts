@@ -19,17 +19,17 @@ export class ProductComponent implements OnInit {
   priceExtras = 0;
   position = 0;
   changeModalValue = 0;
+  montoTotal = 0;
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrayOrder = array;
     });
-    this.priceExtras = 0;
   }
 
   ngOnInit(): void { }
 
-  getArrayOfExtras(extrasSelected: any) {
+  getArrayOfExtras(extrasSelected: any) {    
     this.arrExtras = extrasSelected;
     this.arrExtras.forEach(product => {
       this.priceExtras += product.data.price;
@@ -40,10 +40,12 @@ export class ProductComponent implements OnInit {
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }
-
+    
     if (this.productSelected.data.popup === true) {
       this.showModal = !this.showModal;
       this.changeModalValue = this.changeModalValue + 1;
+    }else{
+      this.arrExtras = [];
     }
 
     // AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
@@ -69,11 +71,15 @@ export class ProductComponent implements OnInit {
     // ENCONTRAR LA POSICION DEL ITEM REPETIDO
     this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
 
+   
+
     if (this.position !== -1 && this.changeModalValue !== 1) {
       this.item.quantity += this.item.quantity;
       this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
       this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
       this.changeModalValue = 0;
+      this.priceExtras = 0;
+
     }
 
     // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
@@ -82,7 +88,11 @@ export class ProductComponent implements OnInit {
       this.arrExtras = [];
       this.priceExtras = 0;
       this.changeModalValue = 0;
+      
     }
+    
+  
+  
     this.orderService.addProductToOrder(this.arrayOrder);
   }
 }

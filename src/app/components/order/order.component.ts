@@ -14,7 +14,7 @@ export class OrderComponent implements OnInit {
   arrOrder: object[];
   objectItem: object;
   indice: string;
-  total: number;
+  total: number = 0.00;
   orderForm = new FormGroup({
     nameCustomer: new FormControl(''),
     numberTable: new FormControl(0),
@@ -23,11 +23,16 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
+      array.forEach(element => {
+        // this.total = 0.00;
+        this.total += element.amount;
+        console.log(this.total);
+      });
     });
   }
 
   ngOnInit(): void { }
-
+  
   add(objectItem) {
     this.indice = this.arrOrder.indexOf(objectItem).toString();
     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
@@ -57,7 +62,7 @@ export class OrderComponent implements OnInit {
     /* console.log(this.arrOrder); */
 
     this.arrOrder.forEach(product => {
-      amount = product.amount + amount;
+      amount = product['amount'] + amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
