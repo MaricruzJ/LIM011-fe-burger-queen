@@ -1,6 +1,6 @@
-<button>CLÁSICOS</button>
-<button>BEBIDAS</button>
-<button>PIQUEOS</button>
+<button (click) = "getByCategory('classic')">CLÁSICOS</button>
+<button (click) = "getByCategory('drinks')">BEBIDAS</button>
+<button (click) = "getByCategory('piqueos')">PIQUEOS</button>
 <div class="contain-products">
-  <app-product></app-product>
+  <app-product [products] = "productsFilter" [productsExtras] = "productsExtras"></app-product>
 </div>

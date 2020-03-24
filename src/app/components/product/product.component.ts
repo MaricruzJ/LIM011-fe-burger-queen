@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FirestoreService } from '../../services/firestore/firestore.service';
+import { Component, OnInit, Input } from '@angular/core';
+import { OrderService } from 'src/app/services/order/order.service';
+import { OrderItem } from 'src/app/interfaces/order-item';
 
 @Component({
   selector: 'app-product',
@@ -7,19 +8,91 @@ import { FirestoreService } from '../../services/firestore/firestore.service';
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit {
-  public products = [];
+  @Input() products: any[];
+  @Input() productsExtras: any[];
+  showModal = false;
+  public productSelected: any = {};
+  public showExtras: any = {};
+  public item: OrderItem;
+  public arrayOrder = [];
+  public arrExtras = [];
+  priceExtras = 0;
+  position = 0;
+  changeModalValue = 0;
+  montoTotal = 0;
 
-  constructor(private firestoreService: FirestoreService) { }
-
-  ngOnInit(): void {
-    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
-      this.products = [];
-      productsSnapshot.forEach((productData: any) => {
-        this.products.push({
-          id: productData.payload.doc.id,
-          data: productData.payload.doc.data()
-        });
-      });
+  constructor(private orderService: OrderService) {
+    this.orderService.currentOrder.subscribe(array => {
+      this.arrayOrder = array;
     });
+  }
+
+  ngOnInit(): void { }
+
+  getArrayOfExtras(extrasSelected: any) {    
+    this.arrExtras = extrasSelected;
+    this.arrExtras.forEach(product => {
+      this.priceExtras += product.data.price;
+    });
+  }
+
+  toggleModal = (id: string) => {
+    if (id != null) {
+      this.productSelected = this.products.find((product) => product.id === id);
+    }
+    
+    if (this.productSelected.data.popup === true) {
+      this.showModal = !this.showModal;
+      this.changeModalValue = this.changeModalValue + 1;
+    }else{
+      this.arrExtras = [];
+    }
+
+    // AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
+    const letra = [];
+    this.arrExtras.forEach((elem) => {
+      if (elem.data.name !== '') {
+        letra.push(elem.data.name.slice(0, 1));
+        letra.sort();
+      }
+    });
+
+    // CREACION DEL ITEM
+    this.item = {
+      id: this.productSelected.id + letra,
+      quantity: 1,
+      product: this.productSelected.data.name,
+      extra: this.arrExtras,
+      amount: this.productSelected.data.price + this.priceExtras,
+      priceUnit: this.productSelected.data.price + this.priceExtras,
+    };
+
+
+    // ENCONTRAR LA POSICION DEL ITEM REPETIDO
+    this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
+
+   
+
+    if (this.position !== -1 && this.changeModalValue !== 1) {
+      this.item.quantity += this.item.quantity;
+      this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
+      this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
+      this.changeModalValue = 0;
+      this.priceExtras = 0;
+
+    }
+
+    // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
+    if (this.showModal === false && this.position === -1) {
+      this.arrayOrder.push(this.item);
+      this.arrExtras = [];
+      this.priceExtras = 0;
+      this.changeModalValue = 0;
+      
+    }
+    
+  
+  
+    this.orderService.addProductToOrder(this.arrayOrder);
   }
 }

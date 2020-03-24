@@ -11,4 +11,12 @@ export class FirestoreService {
   public getProducts() {
     return this.firestore.collection('products').snapshotChanges();
   }
+
+  public setOrder(order) {
+    this.firestore.collection('orders').add(order).then((docRef) => {
+      console.log('Document written with ID: ', docRef.id);
+    }).catch((error) => {
+      console.log('Error adding document: ', error);
+    });
+  }
 }

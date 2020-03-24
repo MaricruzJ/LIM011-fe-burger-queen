@@ -1,5 +1,10 @@
 <div *ngFor="let product of products" class="contain-detail">
-  <img [src]="product.data.image" alt="image of product" class="img-medium">
-  <p>{{product.data.name}}</p>
-  <p>{{'$ '}}{{product.data.price}}</p>
+    <div (click)="toggleModal(product.id)">
+        <img [src]="product.data.image" alt="image of product" class="img-medium">
+        <p>{{ product.data.name }}</p>
+        <p>{{ '$ ' }}{{ product.data.price }}</p>
+    </div>
 </div>
+<app-modal (sendArrayOfExtras)= "getArrayOfExtras($event)" [productsExtras]="productsExtras" [show]="showModal" 
+    [customClass]="'custom_modal_class'" [closeModal]="toggleModal">
+</app-modal>

@@ -1,29 +1,41 @@
-<form>
-  <label for = "">Cliente</label>
-  <input id = "" type="text" class="customer">
-  <label for="">N° de mesa</label>
-  <input type="number" class="number-table">
-</form>
-<p>Pedido</p>
-<table>
-  <tr>
-    <th>Cant.</th>
-    <th>Descripción</th>
-    <th>Precio</th>
-  </tr>
-  <tr>
-    <td>
-      <button>-</button>
-      <label>contador</label>
-      <button>+</button>
+<form [formGroup]="orderForm" (ngSubmit)="sendOrder()">
+  <div class="contain-customer">
+    <label for="">Cliente</label>
+    <input id="" type="text" class="customer" formControlName="nameCustomer">
+  </div>
+  <div class="contain-num-table">
+    <label for="">N° de mesa</label>
+    <input type="number" class="number-table" formControlName="numberTable">
+  </div>
+  <p>Pedido N° ---</p>
+  <table>
+    <tr>
+      <th>Cant.</th>
+      <th>Descripción</th>
+      <th>Precio</th>
+    </tr>
+    <tr *ngFor="let item of arrOrder">
+      <td>
+        <button (click)="subtract(item)"> - </button>
+        <label> {{ item.quantity }} </label>
+        <button (click)="add(item)"> + </button>
+      </td>
+      <td>
+    <tr>{{item.product}} </tr>
+    <tr *ngIf="item.extra.length > 0">
+      <label *ngFor="let extra of item.extra">{{extra.data.name}} </label>
+    </tr>
     </td>
-    <td> Nombre del producto</td>
-    <td>Precio del producto</td>
-  </tr>
-<tr>
-  <td>Total</td>
-  <td></td>
-  <td>Monto en Dolares</td>
-</tr>
-</table>
-<button>Enviar a cocina</button>
+    <td> $ {{item.amount}} </td>
+    <td>
+      <button (click)="deleteItem(item)">X</button>
+    </td>
+    </tr>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td>{{totalAmount}}</td>
+    </tr>
+  </table>
+  <button type="submit">Enviar a cocina</button>
+</form>

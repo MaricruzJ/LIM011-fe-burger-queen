@@ -1,16 +1,17 @@
 form{
-  display: flex;
+  display: block;
   padding: 8px;
   justify-content: center;
   align-items: center;
 }
 
-.customer{
-  width: 85%;
+.contain-customer, .contain-num-table{
+  display: flex;
+  margin-bottom: 4px;
 }
 
-.number-table{
-  width: 10%;
+.customer, .number-table{
+  width: 80%;
 }
 
 input{
@@ -22,3 +23,4 @@ input{
   font-size: 16px;
   outline: none;
 }
+
