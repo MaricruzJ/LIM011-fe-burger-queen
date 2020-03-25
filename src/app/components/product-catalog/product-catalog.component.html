@@ -1,6 +1,8 @@
-<button (click) = "getByCategory('classic')">CLÁSICOS</button>
-<button (click) = "getByCategory('drinks')">BEBIDAS</button>
-<button (click) = "getByCategory('piqueos')">PIQUEOS</button>
-<div class="contain-products">
-  <app-product [products] = "productsFilter" [productsExtras] = "productsExtras"></app-product>
+  <div class="contain-buttons">
+    <button class="btn btn-danger" (click)="getByCategory('classic')">CLÁSICOS</button>
+  <button class="btn btn-danger" (click)="getByCategory('drinks')">BEBIDAS</button>
+  <button class="btn btn-danger" (click)="getByCategory('piqueos')">PIQUEOS</button>
+  </div>
+  <div class="contain-products">
+  <app-product [products]="productsFilter" [productsExtras]="productsExtras"></app-product>
 </div>
