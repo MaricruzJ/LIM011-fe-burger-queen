@@ -1,4 +1,47 @@
-h1{
-  padding: 20px 0px;
-  margin: 0px;
+.bg-yellow{
+  background-color: rgb(255, 239, 8);
+}
+
+.bg-red{
+  background-color: rgb(255, 86, 8);
+}
+
+.bg-red-border{
+  border-color: rgb(255, 86, 8);
+}
+
+.navbar-brand{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 28px;
+}
+
+li{
+  margin-left: 8px;
+}
+
+.btn-outline-danger{
+  border-color: rgb(255, 86, 8);
+}
+
+nav{
+  margin-bottom: 8px;
+}
+
+@media (max-width: 990px){
+  .bg-yellow{
+    background-color:  rgb(255, 239, 8);
+  }
+  
+  .bg-red{
+    background-color: transparent;
+  }
+  
+  .bg-red-border{
+    border-color: transparent;
+  }
+
+  li a{
+    color: #333 !important;
+  }
+
 }

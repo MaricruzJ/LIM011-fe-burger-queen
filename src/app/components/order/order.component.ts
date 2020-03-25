@@ -14,8 +14,7 @@ export class OrderComponent implements OnInit {
   arrOrder: object[];
   objectItem: object;
   indice: string;
-  total: number;
-  amount: number;
+  totalAmount = 0.00;
   orderForm = new FormGroup({
     nameCustomer: new FormControl(''),
     numberTable: new FormControl(0),
@@ -24,6 +23,11 @@ export class OrderComponent implements OnInit {
   constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
+      this.totalAmount = 0;
+      array.forEach(element => {
+        this.totalAmount += element.amount;
+        console.log(this.totalAmount);
+      });
     });
   }
 
@@ -54,13 +58,18 @@ export class OrderComponent implements OnInit {
   }
 
   sendOrder() {
-    this.amount = 0;
+    let amount = 0;
+    this.orderForm.value.totalAmonut = this.totalAmount;
+    /* console.log(this.arrOrder); */
+
     this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
+      amount = product['amount'] + amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
-    this.orderForm.value.amount = this.amount;
+    this.orderForm.value.amount = amount;
+    console.log(this.orderForm.value);
+    // enviar al firestore
     this.firestoreService.setOrder(this.orderForm.value);
   }
 }
