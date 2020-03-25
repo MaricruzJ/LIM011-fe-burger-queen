@@ -1,16 +1,23 @@
-button{
-  height: 36px;
-  border-radius: 8px;
-  margin-left: 8px;
-  width: 30%;  
+.contain-buttons{
+  width: 100%;
+  text-align: center;
+  padding: 0px 0px;
+  box-sizing: border-box;
 }
 
-.contain-products{
-  padding: 10px;
-  app-product{
-   display: flex;
-   flex-wrap: wrap;
-   justify-content: center;
-   align-items: baseline;
-  }  
+button {
+  margin: 0px 8px;
+  border-color: rgb(255, 86, 8);
+  background-color: rgb(255, 86, 8);
+  color: white;
 }
+
+app-product { 
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-around;
+  padding: 0px 0px;
+  box-sizing: border-box;
+}
+

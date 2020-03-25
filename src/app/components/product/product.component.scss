@@ -1,18 +1,29 @@
-.contain-detail{
+.container-card{
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.card{
   text-align: center;
-  width: 33%;
+  align-items: center;
+  padding: 0px;
 }
 
 img{
-  height: 80px;
-  width: 80px;
-  border-radius: 25%;
-  border: solid 1px #c9c9c9;
-  padding: 8px;
-  margin-top: 16px;
+  width: 100px !important;
+  height: auto;
+}
+
+.container-detail{
+  padding: 0px;
+}
+
+.name-product{
+  height: 44px;
+  background-color: #000;
+  color: #fff;
 }
 
 p{
-  font-size: 18px;
-  margin: 0px;
+  margin-bottom: 4px;
 }

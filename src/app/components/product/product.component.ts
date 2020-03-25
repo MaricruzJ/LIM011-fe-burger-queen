@@ -25,6 +25,7 @@ export class ProductComponent implements OnInit {
     this.orderService.currentOrder.subscribe(array => {
       this.arrayOrder = array;
     });
+    console.log(this.arrayOrder);
   }
 
   ngOnInit(): void { }

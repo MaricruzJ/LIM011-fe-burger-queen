@@ -15,6 +15,7 @@ export class OrderComponent implements OnInit {
   objectItem: object;
   indice: string;
   totalAmount = 0.00;
+  amount = 0;
   orderForm = new FormGroup({
     nameCustomer: new FormControl(''),
     numberTable: new FormControl(0),
@@ -24,9 +25,14 @@ export class OrderComponent implements OnInit {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
       this.totalAmount = 0;
-      array.forEach(element => {
-        this.totalAmount += element.amount;
+      this.arrOrder.forEach(item => {
+        this.totalAmount += item['amount'];
         console.log(this.totalAmount);
+      });
+      console.log(this.arrOrder);
+      this.amount = 0;
+      this.arrOrder.forEach(product => {
+        this.amount = product['amount'] + this.amount;
       });
     });
   }
@@ -37,6 +43,10 @@ export class OrderComponent implements OnInit {
     this.indice = this.arrOrder.indexOf(objectItem).toString();
     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
     this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
+    this.amount = 0;
+    this.arrOrder.forEach(product => {
+      this.amount = product['amount'] + this.amount;
+    });
   }
 
   subtract(objectItem) {
@@ -48,6 +58,10 @@ export class OrderComponent implements OnInit {
     if (this.arrOrder[this.indice].quantity === 0) {
       this.deleteItem(objectItem);
     }
+    this.amount = 0;
+    this.arrOrder.forEach(product => {
+      this.amount = product['amount'] + this.amount;
+    });
   }
 
   deleteItem(objectItem) {
@@ -55,19 +69,20 @@ export class OrderComponent implements OnInit {
     if (position !== -1) {
       this.arrOrder.splice(position, 1);
     }
+    this.amount = 0;
+    this.arrOrder.forEach(product => {
+      this.amount = product['amount'] + this.amount;
+    });
   }
 
   sendOrder() {
-    let amount = 0;
     this.orderForm.value.totalAmonut = this.totalAmount;
-    /* console.log(this.arrOrder); */
-
     this.arrOrder.forEach(product => {
-      amount = product['amount'] + amount;
+      this.amount = product['amount'] + this.amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
-    this.orderForm.value.amount = amount;
+    this.orderForm.value.amount = this.amount;
     console.log(this.orderForm.value);
     // enviar al firestore
     this.firestoreService.setOrder(this.orderForm.value);

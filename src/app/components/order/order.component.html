@@ -20,9 +20,9 @@
     </thead>
     <tr *ngFor="let item of arrOrder">
       <td class="quantity">
-        <button class="form-control" (click)="subtract(item)">-</button>
+        <label class="form-control" (click)="subtract(item)">-</label>
         <label> {{ item.quantity }} </label>
-        <button class="form-control" (click)="add(item)">+</button>
+        <label class="form-control" (click)="add(item)">+</label>
       </td>
       <td>
     <tr>{{item.product}} </tr>
@@ -37,7 +37,7 @@
     </tr>
     <tr>
       <td colspan="2">Total</td>
-      <td colspan="2">$ {{totalAmount}}</td>
+      <td colspan="2">$ {{amount}}</td>
     </tr>
   </table>
   <button type="submit" class="btn btn-warning col-md-4 offset-md-8">Enviar a cocina</button>

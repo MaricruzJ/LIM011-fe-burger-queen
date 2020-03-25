@@ -10,5 +10,6 @@ export class OrderService {
 
   addProductToOrder(value) {
     this.arrayOrder.next(value);
+    console.log(this.arrayOrder);
   }
 }
