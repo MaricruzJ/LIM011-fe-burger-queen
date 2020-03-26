@@ -37,6 +37,8 @@ export class OrderComponent implements OnInit {
     this.indice = this.arrOrder.indexOf(objectItem).toString();
     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
     this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
+  console.log(this.arrOrder);
+  
   }
 
   subtract(objectItem) {
