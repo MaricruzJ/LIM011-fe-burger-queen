@@ -1,76 +1,29 @@
-.contain-detail {
-  display: flex;
-  margin: 1rem;
-  width: 7rem;
-  height: 10rem;
-  border-radius: 10%;
-  border: solid 1px #c9c9c9;
-  padding: 0.3rem;
-  padding-top: 0.3rem;
-}
-.divContainer {
-  display: block;
-  text-align: center;
-  flex-direction: column;
-  justify-content: center;
-}
-img {
-  padding-bottom: 0.3rem;
-  display: block;
-  margin: auto;
-  height: 80px;
-  width: 80px;
-  justify-content: center;
-}
-p {
-  font-size: 73%;
-  margin-top: 0.3rem;
-  margin-bottom: 0.2rem;
+.container-card{
+  margin-top: 8px;
+  box-sizing: border-box;
 }
 
-@media screen and (min-width: 1325px) {
-  .contain-detail {
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
-    width: 10rem;
-    height: 14rem;
-    border-radius: 10%;
-    border: solid 3px yellow;
-    padding: 0.3rem;
-    padding-top: 0.3rem;
-    background: #70d4ff;
-    padding-left: 0rem;
-    padding-right: 0rem;
-    background-image: url(https://firebasestorage.googleapis.com/v0/b/burgerqueen-ee96d.appspot.com/o/mesa1.jpg?alt=media&token=ebe4e44d-b100-4d71-ab33-0412cf415a08);
-    background-size: 10rem;
-  }
-  
-  p {
-    font-size: 110%;
-    margin-top: 0.5rem;
-    margin-bottom: 0.6rem;
-  }
-  img {
-    padding-top: 1rem;
-    display: block;
-    margin: auto;
-    height: 100px;
-    width: 85px;
-    justify-content: center;
-  }
-  .nameDiv {
-    width: 10rem;
-    height: 3.8rem;
-    padding-left: 0.35rem;
-    padding-right: 0.35rem;
-    background: red;
-    margin: 0rem;
-  }
-  .priceDiv {
-    width: 10rem;
-    height: 3.2rem;
-    background: yellow;
-  }
+.card{
+  text-align: center;
+  align-items: center;
+  padding: 0px;
+}
+
+img{
+  width: 100px !important;
+  height: auto;
+}
+
+.container-detail{
+  padding: 0px;
+}
+
+.name-product{
+  height: 44px;
+  background-color: #000;
+  color: #fff;
+}
+
+p{
+  margin-bottom: 4px;
 }

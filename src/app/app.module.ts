@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+
 import { HeaderComponent } from './components/header/header.component';
 import { ProductComponent } from './components/product/product.component';
 import { OrderComponent } from './components/order/order.component';
