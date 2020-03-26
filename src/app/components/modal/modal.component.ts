@@ -22,7 +22,7 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {}
 
   getExtraSelected(productExtraSelected: any) {
-    
+
     const position = this.extrasSelected.findIndex((product) => product.id === productExtraSelected.id);
     if (position !== -1) {
       this.extrasSelected.splice(position, 1);
@@ -36,5 +36,4 @@ export class ModalComponent implements OnInit {
     this.closeModal();
     this.extrasSelected = [];
   }
-
 }
