@@ -79,13 +79,12 @@ export class ProductComponent implements OnInit {
       this.priceExtras = 0;
     }
 
-    // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
+    // Agregar item al arrayOrder para enviar al servicio y que este sea usado en el componente order component 
     if (this.showModal === false && this.position === -1) {
       this.arrayOrder.push(this.item);
       this.arrExtras = [];
       this.priceExtras = 0;
       this.changeModalValue = 0;
-
     }
     this.orderService.addProductToOrder(this.arrayOrder);
   }
