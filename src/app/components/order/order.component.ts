@@ -21,6 +21,14 @@ export class OrderComponent implements OnInit {
   });
 
   constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
+
+  }
+
+  ngOnInit(): void {
+    this.getOrder();
+  }
+
+  getOrder() {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
       console.log(this.arrOrder);
@@ -30,8 +38,6 @@ export class OrderComponent implements OnInit {
       });
     });
   }
-
-  ngOnInit(): void { }
 
   add(objectItem) {
     this.indice = this.arrOrder.indexOf(objectItem).toString();
