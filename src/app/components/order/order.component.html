@@ -20,9 +20,9 @@
     </thead>
     <tr *ngFor="let item of arrOrder">
       <td class="quantity">
-        <label class="form-control" (click)="subtract(item)">-</label>
-        <label> {{ item.quantity }} </label>
-        <label class="form-control" (click)="add(item)">+</label>
+        <button type="button" class="form-control" (click)="subtract(item)">-</button>
+        <span> {{ item.quantity }} </span>
+        <button type="button" class="form-control" (click)="add(item)">+</button>
       </td>
       <td>
     <tr>{{item.product}} </tr>
@@ -30,14 +30,14 @@
       <label *ngFor="let extra of item.extra">{{extra.data.name}} </label>
     </tr>
     </td>
-    <td> $ {{item.amount}} </td>
+    <td> {{item.amount |currency}} </td>
     <td>
       <i class="fa fa-trash-o form-control" aria-hidden="true" (click)="deleteItem(item)"></i>
     </td>
     </tr>
     <tr>
       <td colspan="2">Total</td>
-      <td colspan="2">$ {{amount}}</td>
+      <td colspan="2">{{amount |currency}}</td>
     </tr>
   </table>
   <button type="submit" class="btn btn-warning col-md-4 offset-md-8">Enviar a cocina</button>
