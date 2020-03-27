@@ -39,41 +39,41 @@ export class OrderComponent implements OnInit {
     });
   }
 
-  add(objectItem) {
-    this.indice = this.arrOrder.indexOf(objectItem).toString();
-    this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
-    this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    });
-  }
+  // add(objectItem) {
+  //   this.indice = this.arrOrder.indexOf(objectItem).toString();
+  //   this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
+  //   this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
+  //   this.amount = 0;
+  //   this.arrOrder.forEach(product => {
+  //     this.amount = product['amount'] + this.amount;
+  //   });
+  // }
 
-  subtract(objectItem) {
-    this.indice = this.arrOrder.indexOf(objectItem).toString();
-    if (this.arrOrder[this.indice].quantity >= 1) {
-      this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity - 1;
-      this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-    }
-    if (this.arrOrder[this.indice].quantity === 0) {
-      this.deleteItem(objectItem);
-    }
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    });
-  }
+  // subtract(objectItem) {
+  //   this.indice = this.arrOrder.indexOf(objectItem).toString();
+  //   if (this.arrOrder[this.indice].quantity >= 1) {
+  //     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity - 1;
+  //     this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
+  //   }
+  //   if (this.arrOrder[this.indice].quantity === 0) {
+  //     this.deleteItem(objectItem);
+  //   }
+  //   this.amount = 0;
+  //   this.arrOrder.forEach(product => {
+  //     this.amount = product['amount'] + this.amount;
+  //   });
+  // }
 
-  deleteItem(objectItem) {
-    const position = this.arrOrder.findIndex((product) => product['id'] === objectItem.id);
-    if (position !== -1) {
-      this.arrOrder.splice(position, 1);
-    }
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    });
-  }
+  // deleteItem(objectItem) {
+  //   const position = this.arrOrder.findIndex((product) => product['id'] === objectItem.id);
+  //   if (position !== -1) {
+  //     this.arrOrder.splice(position, 1);
+  //   }
+  //   this.amount = 0;
+  //   this.arrOrder.forEach(product => {
+  //     this.amount = product['amount'] + this.amount;
+  //   });
+  // }
 
   sendOrder() {
     this.arrOrder.forEach(product => {

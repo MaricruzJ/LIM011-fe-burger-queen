@@ -11,6 +11,7 @@ export class ProductComponent implements OnInit {
   @Input() products: any[];
   @Input() productsExtras: any[];
   showModal = false;
+  public newProductSelected: any = {};
   public productSelected: any = {};
   public showExtras: any = {};
   public item: OrderItem;
@@ -38,15 +39,10 @@ export class ProductComponent implements OnInit {
   }
 
   toggleModal = (id: string) => {
+    console.log(this.changeModalValue);
+    
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
-    }
-
-    if (this.productSelected.data.popup === true) {
-      this.showModal = !this.showModal;
-      this.changeModalValue = this.changeModalValue + 1;
-    } else {
-      this.arrExtras = [];
     }
 
     // AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
@@ -58,35 +54,33 @@ export class ProductComponent implements OnInit {
       }
     });
 
+    if (this.productSelected.data.popup === false) {
+      this.newProductSelected = this.productSelected;
+
+    } else {
+      this.showModal = !this.showModal;
+      this.changeModalValue = this.changeModalValue + 1;
+      if (this.changeModalValue === 2) {
+        this.newProductSelected = this.productSelected;
+      }
+    }
+
     // CREACION DEL ITEM
-    this.item = {
-      id: this.productSelected.id + letra,
-      quantity: 1,
-      product: this.productSelected.data.name,
-      extra: this.arrExtras,
-      amount: this.productSelected.data.price + this.priceExtras,
-      priceUnit: this.productSelected.data.price + this.priceExtras,
-    };
-
-    // ENCONTRAR LA POSICION DEL ITEM REPETIDO
-    this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
-
-    if (this.position !== -1 && this.changeModalValue !== 1) {
-      this.item.quantity += this.item.quantity;
-      this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
-      this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
-      this.changeModalValue = 0;
-      this.priceExtras = 0;
-    }
-
-    // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
-    if (this.showModal === false && this.position === -1) {
-      this.arrayOrder.push(this.item);
+    if (this.changeModalValue !== 1) {
+      this.item = {
+        id: this.newProductSelected.id + letra,
+        quantity: 1,
+        product: this.newProductSelected.data.name,
+        extra: this.arrExtras,
+        amount: this.newProductSelected.data.price + this.priceExtras,
+        priceUnit: this.newProductSelected.data.price + this.priceExtras,
+      };      
+      this.orderService.addProductTOOrder(this.item);
       this.arrExtras = [];
-      this.priceExtras = 0;
+      this.productSelected = {};
+      this.newProductSelected = {};
       this.changeModalValue = 0;
-
+      this.priceExtras = 0;
     }
-    this.orderService.addProductToOrder(this.arrayOrder);
   }
 }
