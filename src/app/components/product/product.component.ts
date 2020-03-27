@@ -7,28 +7,22 @@ import { OrderItem } from 'src/app/interfaces/order-item';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent{
   @Input() products: any[];
   @Input() productsExtras: any[];
   showModal = false;
   public productSelected: any = {};
   public showExtras: any = {};
   public item: OrderItem;
-  public arrayOrder = [];
   public arrExtras = [];
   priceExtras = 0;
   position = 0;
   changeModalValue = 0;
   montoTotal = 0;
 
-  constructor(private orderService: OrderService) {
-    this.orderService.currentOrder.subscribe(array => {
-      this.arrayOrder = array;
-    });
-    console.log(this.arrayOrder);
-  }
+  constructor(private orderService: OrderService) { }
 
-  ngOnInit(): void { }
+  /* ngOnInit(): void { } */
 
   getArrayOfExtras(extrasSelected: any) {
     this.arrExtras = extrasSelected;
@@ -37,9 +31,9 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  toggleModal = (id: string) => {
-    if (id != null) {
-      this.productSelected = this.products.find((product) => product.id === id);
+  getItem = (element: any) => {
+    if (element != null) {
+      this.productSelected = this.products.find((product) => product.id === element.id);
     }
 
     if (this.productSelected.data.popup === true) {
@@ -68,7 +62,7 @@ export class ProductComponent implements OnInit {
       priceUnit: this.productSelected.data.price + this.priceExtras,
     };
 
-    // ENCONTRAR LA POSICION DEL ITEM REPETIDO
+    /* // ENCONTRAR LA POSICION DEL ITEM REPETIDO
     this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
 
     if (this.position !== -1 && this.changeModalValue !== 1) {
@@ -85,7 +79,7 @@ export class ProductComponent implements OnInit {
       this.arrExtras = [];
       this.priceExtras = 0;
       this.changeModalValue = 0;
-    }
-    this.orderService.addProductToOrder(this.arrayOrder);
+    } */
+    this.orderService.insertProductToOrder(this.item);
   }
 }

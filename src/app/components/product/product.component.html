@@ -1,4 +1,4 @@
-<div class="container-card col-4" *ngFor="let product of products" (click)="toggleModal(product.id)">
+<div class="container-card col-4" *ngFor="let product of products" (click)="getItem(product)">
     <div class="card">
         <img [src]="product.data.image" alt="image of product">
         <div class="container-detail col-12">
@@ -8,5 +8,5 @@
     </div>
 </div>
 <app-modal (sendArrayOfExtras)="getArrayOfExtras($event)" [productsExtras]="productsExtras" [show]="showModal"
-    [customClass]="'custom_modal_class'" [closeModal]="toggleModal">
+    [customClass]="'custom_modal_class'" [closeModal]="getItem">
 </app-modal>

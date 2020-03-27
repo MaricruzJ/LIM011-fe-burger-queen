@@ -11,7 +11,8 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 export class OrderComponent implements OnInit {
 
   public quantity = 1;
-  arrOrder: object[];
+  position = 0;
+  arrOrder: object[] = [];
   objectItem: object;
   indice: string;
   amount = 0;
@@ -20,26 +21,24 @@ export class OrderComponent implements OnInit {
     numberTable: new FormControl(0),
   });
 
-  constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
-
-  }
+  constructor(private orderService: OrderService, private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
-    this.getOrder();
+    // this.getOrder();
   }
 
   getOrder() {
-    this.orderService.currentOrder.subscribe(array => {
+    /* this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
       console.log(this.arrOrder);
       this.amount = 0;
       this.arrOrder.forEach(product => {
         this.amount = product['amount'] + this.amount;
       });
-    });
+    }); */
   }
 
-  add(objectItem) {
+  /* add(objectItem) {
     this.indice = this.arrOrder.indexOf(objectItem).toString();
     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
     this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
@@ -85,5 +84,5 @@ export class OrderComponent implements OnInit {
     console.log(this.orderForm.value);
     // enviar al firestore
     this.firestoreService.setOrder(this.orderForm.value);
-  }
+  } */
 }
