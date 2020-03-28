@@ -1,7 +1,7 @@
 <div [ngClass]="customClass || '' " class="modal" [ngStyle]="{display: show ? 'block' : 'none'}">
   <div class="overlay"></div>
   <div class="modal_content">
-    <!-- <button title="Close" class="close_modal" (click)="closeModal()">X</button> -->
+    <button title="Close" class="close_modal" (click)="closeModal()">X</button>
     <h2>Extras</h2>
     <div class="container">
       <div *ngFor="let productExtra of productsExtras">
