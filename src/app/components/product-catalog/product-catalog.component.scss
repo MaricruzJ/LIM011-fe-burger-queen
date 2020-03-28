@@ -6,9 +6,15 @@
 
 button {
   margin: 0px 8px;
+  border-color: #000094;
+  background-color: #000094;
+  color: white;
+}
+
+button:hover{
+  color: white;
   border-color: #006;
   background-color: #006;
-  color: white;
 }
 
 app-product { 

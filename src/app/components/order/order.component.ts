@@ -12,8 +12,7 @@ export class OrderComponent implements OnInit {
 
   public quantity = 1;
   position = 0;
-  arrOrder: object[] = [];
-  objectItem: object;
+  arrOrder = [];
   indice: string;
   amount = 0;
   orderForm = new FormGroup({
@@ -30,53 +29,28 @@ export class OrderComponent implements OnInit {
   getOrder() {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
-      // console.log(this.arrOrder);
       this.amount = 0;
       this.arrOrder.forEach(product => {
-        this.amount = product['amount'] + this.amount;
+        this.amount = product.amount + this.amount;
       });
     });
   }
 
   add(objectItem) {
-  /*   this.indice = this.arrOrder.indexOf(objectItem).toString();
-    this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
-    this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    }); */
+    this.orderService.addQuantity(objectItem);
   }
 
   subtract(objectItem) {
-   /*  this.indice = this.arrOrder.indexOf(objectItem).toString();
-    if (this.arrOrder[this.indice].quantity >= 1) {
-      this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity - 1;
-      this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-    }
-    if (this.arrOrder[this.indice].quantity === 0) {
-      this.deleteItem(objectItem);
-    }
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    }); */
+    this.orderService.subtractQuantity(objectItem);
   }
 
   deleteItem(objectItem) {
-   /*  const position = this.arrOrder.findIndex((product) => product['id'] === objectItem.id);
-    if (position !== -1) {
-      this.arrOrder.splice(position, 1);
-    }
-    this.amount = 0;
-    this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
-    }); */
+    this.orderService.deleteItem(objectItem);
   }
 
   sendOrder() {
     this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
+      this.amount = product.amount + this.amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
@@ -84,5 +58,5 @@ export class OrderComponent implements OnInit {
     console.log(this.orderForm.value);
     // enviar al firestore
     this.firestoreService.setOrder(this.orderForm.value);
-  };
+  }
 }

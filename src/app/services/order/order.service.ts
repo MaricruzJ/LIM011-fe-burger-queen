@@ -7,6 +7,7 @@ export class OrderService {
 
   private newArray = [];
   position = 0;
+  indice: string;
 
   private arrayOrder = new BehaviorSubject([]);
   currentOrder = this.arrayOrder.asObservable();
@@ -28,18 +29,33 @@ export class OrderService {
       this.newArray.push(item);
     }
     this.arrayOrder.next(this.newArray);
-    // console.log(this.arrayOrder.value);
   }
 
   addQuantity(item) {
+    this.indice = this.newArray.indexOf(item).toString();
+    this.newArray[this.indice].quantity = this.newArray[this.indice].quantity + 1;
+    this.newArray[this.indice].amount = this.newArray[this.indice].priceUnit * this.newArray[this.indice].quantity;
 
+    this.arrayOrder.next(this.newArray);
   }
 
   subtractQuantity(item) {
-
+    this.indice = this.newArray.indexOf(item).toString();
+    if (this.newArray[this.indice].quantity >= 1) {
+      this.newArray[this.indice].quantity = this.newArray[this.indice].quantity - 1;
+      this.newArray[this.indice].amount = this.newArray[this.indice].priceUnit * this.newArray[this.indice].quantity;
+    }
+    if (this.newArray[this.indice].quantity === 0) {
+      this.deleteItem(item);
+    }
+    this.arrayOrder.next(this.newArray);
   }
 
   deleteItem(item) {
-
+    const position = this.newArray.findIndex((product) => product['id'] === item.id);
+    if (position !== -1) {
+      this.newArray.splice(position, 1);
+    }
+    this.arrayOrder.next(this.newArray);
   }
 }
