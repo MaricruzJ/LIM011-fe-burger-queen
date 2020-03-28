@@ -13,20 +13,16 @@ export class ProductComponent implements OnInit {
   showModal = false;
   public newProductSelected: any = {};
   public productSelected: any = {};
-  public showExtras: any = {};
   public item: OrderItem;
   public arrayOrder = [];
   public arrExtras = [];
   priceExtras = 0;
-  position = 0;
   changeModalValue = 0;
-  montoTotal = 0;
 
   constructor(private orderService: OrderService) {
     this.orderService.currentOrder.subscribe(array => {
       this.arrayOrder = array;
     });
-    console.log(this.arrayOrder);
   }
 
   ngOnInit(): void { }
@@ -40,7 +36,7 @@ export class ProductComponent implements OnInit {
 
   toggleModal = (id: string) => {
     console.log(this.changeModalValue);
-    
+
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }
@@ -74,7 +70,7 @@ export class ProductComponent implements OnInit {
         extra: this.arrExtras,
         amount: this.newProductSelected.data.price + this.priceExtras,
         priceUnit: this.newProductSelected.data.price + this.priceExtras,
-      };      
+      };
       this.orderService.addProductTOOrder(this.item);
       this.arrExtras = [];
       this.productSelected = {};
