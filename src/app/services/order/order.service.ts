@@ -13,18 +13,14 @@ export class OrderService {
 
   constructor() { }
 
-
   insertProductToOrder(item) {
-    console.log(item);
-    
+    // console.log(item);
     if (this.newArray.length > 0) {
       this.position = this.newArray.findIndex((element) => element.id === item.id);
-
       if (this.position !== -1) {
         item.quantity += item.quantity;
         this.newArray[this.position].quantity = this.newArray[this.position].quantity + 1;
         this.newArray[this.position].amount = this.newArray[this.position].amount + this.newArray[this.position].priceUnit;
-        // this.priceExtras = 0;
       } else {
         this.newArray.push(item);
       }
@@ -32,7 +28,7 @@ export class OrderService {
       this.newArray.push(item);
     }
     this.arrayOrder.next(this.newArray);
-    console.log(this.arrayOrder.value);
+    // console.log(this.arrayOrder.value);
   }
 
   addQuantity(item) {

@@ -1,4 +1,4 @@
-<div class="container-card col-4" *ngFor="let product of products" (click)="getItem(product)">
+<div class="container-card col-4" *ngFor="let product of products" (click)="getItem(product.id)">
     <div class="card">
         <img [src]="product.data.image" alt="image of product">
         <div class="container-detail col-12">

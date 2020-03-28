@@ -1,5 +1,4 @@
-<!-- <form [formGroup]="orderForm" (ngSubmit)="sendOrder()">
- -->  <form [formGroup]="orderForm">
+<form [formGroup]="orderForm" (ngSubmit)="sendOrder()">
   <div class="row">
     <div class="contain-customer col-8">
       <label for="">Cliente</label>
@@ -19,19 +18,19 @@
         <th scope="col"></th>
       </tr>
     </thead>
-    <!-- <tr *ngFor="let item of arrOrder">
+    <tr *ngFor="let item of arrOrder">
       <td class="quantity">
         <button type="button" class="form-control" (click)="subtract(item)">-</button>
-        <span> {{ item.quantity }} </span>
+        <span> {{ item['quantity'] }} </span>
         <button type="button" class="form-control" (click)="add(item)">+</button>
       </td>
       <td>
-    <tr>{{item.product}} </tr>
-    <tr *ngIf="item.extra.length > 0">
-      <label *ngFor="let extra of item.extra">{{extra.data.name}} </label>
+    <tr>{{item['product']}} </tr>
+    <tr *ngIf="item['extra'].length > 0">
+      <label *ngFor="let extra of item['extra']">{{extra.data.name}} </label>
     </tr>
     </td>
-    <td> {{item.amount |currency}} </td> 
+    <td> {{item['amount'] |currency}} </td>
     <td>
       <i class="fa fa-trash-o form-control" aria-hidden="true" (click)="deleteItem(item)"></i>
     </td>
@@ -39,7 +38,7 @@
     <tr>
       <td colspan="2">Total</td>
       <td colspan="2">{{amount |currency}}</td>
-    </tr>-->
+    </tr>
   </table>
-  <button type="submit" class="btn btn-warning col-md-4 offset-md-8">Enviar a cocina</button>
+  <button type="submit" class="btn btn-send col-md-4 offset-md-8">Enviar a cocina</button>
 </form>

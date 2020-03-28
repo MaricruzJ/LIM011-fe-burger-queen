@@ -7,22 +7,21 @@ import { OrderItem } from 'src/app/interfaces/order-item';
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.scss']
 })
-export class ProductComponent{
+export class ProductComponent implements OnInit {
   @Input() products: any[];
   @Input() productsExtras: any[];
   showModal = false;
+  public newProductSelected: any = {};
   public productSelected: any = {};
   public showExtras: any = {};
   public item: OrderItem;
   public arrExtras = [];
   priceExtras = 0;
-  position = 0;
   changeModalValue = 0;
-  montoTotal = 0;
 
   constructor(private orderService: OrderService) { }
 
-  /* ngOnInit(): void { } */
+  ngOnInit(): void { }
 
   getArrayOfExtras(extrasSelected: any) {
     this.arrExtras = extrasSelected;
@@ -31,19 +30,14 @@ export class ProductComponent{
     });
   }
 
-  getItem = (element: any) => {
-    if (element != null) {
-      this.productSelected = this.products.find((product) => product.id === element.id);
+  getItem = (id: string) => {
+    console.log(this.changeModalValue);
+
+    if (id != null) {
+      this.productSelected = this.products.find((product) => product.id === id);
     }
 
-    if (this.productSelected.data.popup === true) {
-      this.showModal = !this.showModal;
-      this.changeModalValue = this.changeModalValue + 1;
-    } else {
-      this.arrExtras = [];
-    }
-
-    // AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
+    // Agregar identificador al ID del item, con nombres de los extras.
     const letra = [];
     this.arrExtras.forEach((elem) => {
       if (elem.data.name !== '') {
@@ -52,34 +46,33 @@ export class ProductComponent{
       }
     });
 
-    // CREACION DEL ITEM
-    this.item = {
-      id: this.productSelected.id + letra,
-      quantity: 1,
-      product: this.productSelected.data.name,
-      extra: this.arrExtras,
-      amount: this.productSelected.data.price + this.priceExtras,
-      priceUnit: this.productSelected.data.price + this.priceExtras,
-    };
+    if (this.productSelected.data.popup === false) {
+      this.newProductSelected = this.productSelected;
 
-    /* // ENCONTRAR LA POSICION DEL ITEM REPETIDO
-    this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
+    } else {
+      this.showModal = !this.showModal;
+      this.changeModalValue = this.changeModalValue + 1;
+      if (this.changeModalValue === 2) {
+        this.newProductSelected = this.productSelected;
+      }
+    }
 
-    if (this.position !== -1 && this.changeModalValue !== 1) {
-      this.item.quantity += this.item.quantity;
-      this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
-      this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
+    // Creación del item
+    if (this.changeModalValue !== 1) {
+      this.item = {
+        id: this.newProductSelected.id + letra,
+        quantity: 1,
+        product: this.newProductSelected.data.name,
+        extra: this.arrExtras,
+        amount: this.newProductSelected.data.price + this.priceExtras,
+        priceUnit: this.newProductSelected.data.price + this.priceExtras,
+      };
+      this.orderService.insertProductToOrder(this.item);
+      this.arrExtras = [];
+      this.productSelected = {};
+      this.newProductSelected = {};
       this.changeModalValue = 0;
       this.priceExtras = 0;
     }
-
-    // Agregar item al arrayOrder para enviar al servicio y que este sea usado en el componente order component 
-    if (this.showModal === false && this.position === -1) {
-      this.arrayOrder.push(this.item);
-      this.arrExtras = [];
-      this.priceExtras = 0;
-      this.changeModalValue = 0;
-    } */
-    this.orderService.insertProductToOrder(this.item);
   }
 }
