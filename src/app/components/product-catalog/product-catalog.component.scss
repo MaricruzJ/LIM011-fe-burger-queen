@@ -1,14 +1,13 @@
 .contain-buttons{
   width: 100%;
   text-align: center;
-  padding: 0px 0px;
   box-sizing: border-box;
 }
 
 button {
   margin: 0px 8px;
-  border-color: rgb(255, 86, 8);
-  background-color: rgb(255, 86, 8);
+  border-color: #006;
+  background-color: #006;
   color: white;
 }
 
@@ -17,7 +16,6 @@ app-product {
   flex-wrap: wrap;
   width: 100%;
   justify-content: space-around;
-  padding: 0px 0px;
   box-sizing: border-box;
 }
 
