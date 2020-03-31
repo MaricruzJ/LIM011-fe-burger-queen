@@ -16,7 +16,7 @@ export class ProductCatalogComponent implements OnInit {
   constructor(private firestoreService: FirestoreService) {  }
 
   ngOnInit(): void {
-    this.firestoreService.  ().subscribe((productsSnapshot) => {
+    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
         this.products.push({
