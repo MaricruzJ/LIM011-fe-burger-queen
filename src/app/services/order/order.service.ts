@@ -4,54 +4,58 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class OrderService {
-  private arrayOrder = new BehaviorSubject<any>([]);
+
+  private newArray = [];
+  position = 0;
+  indice: string;
+
+  private arrayOrder = new BehaviorSubject([]);
   currentOrder = this.arrayOrder.asObservable();
-  public position:number;
-  
+
   constructor() { }
 
-  addProductTOOrder(item) {
-    const itemObj = {
-      ...item,
-      quantity: 1
-    };
+  insertProductToOrder(item) {
+    // console.log(item);
+    if (this.newArray.length > 0) {
+      this.position = this.newArray.findIndex((element) => element.id === item.id);
+      if (this.position !== -1) {
+        item.quantity += item.quantity;
+        this.newArray[this.position].quantity = this.newArray[this.position].quantity + 1;
+        this.newArray[this.position].amount = this.newArray[this.position].amount + this.newArray[this.position].priceUnit;
+      } else {
+        this.newArray.push(item);
+      }
+    } else {
+      this.newArray.push(item);
+    }
+    this.arrayOrder.next(this.newArray);
+  }
 
-    const newArrObj = [
-      ...this.arrayOrder.value,
-      itemObj
-    ]
-    this.arrayOrder.next(newArrObj);
+  addQuantity(item) {
+    this.indice = this.newArray.indexOf(item).toString();
+    this.newArray[this.indice].quantity = this.newArray[this.indice].quantity + 1;
+    this.newArray[this.indice].amount = this.newArray[this.indice].priceUnit * this.newArray[this.indice].quantity;
 
-}
+    this.arrayOrder.next(this.newArray);
+  }
 
-  // addProductToOrder(newItem) {
-    // console.log(newItem);
-    
-      // console.log(this.arrayOrder.next((newItem)));
-      
-  
-    // ENCONTRAR LA POSICION DEL ITEM REPETIDO
-    // this.position = this.arrayOrder.findIndex((element) => element.id === this.item.id);
+  subtractQuantity(item) {
+    this.indice = this.newArray.indexOf(item).toString();
+    if (this.newArray[this.indice].quantity >= 1) {
+      this.newArray[this.indice].quantity = this.newArray[this.indice].quantity - 1;
+      this.newArray[this.indice].amount = this.newArray[this.indice].priceUnit * this.newArray[this.indice].quantity;
+    }
+    if (this.newArray[this.indice].quantity === 0) {
+      this.deleteItem(item);
+    }
+    this.arrayOrder.next(this.newArray);
+  }
 
-    // if (this.position !== -1 && this.changeModalValue !== 1) {
-    //   this.item.quantity += this.item.quantity;
-    //   this.arrayOrder[this.position].quantity = this.arrayOrder[this.position].quantity + 1;
-    //   this.arrayOrder[this.position].amount = this.arrayOrder[this.position].amount + this.arrayOrder[this.position].priceUnit;
-    //   this.changeModalValue = 0;
-    //   this.priceExtras = 0;
-    // }
-
-    // AGREGAR ITEM AL ARRAYorder PARA ENVIAR AL ORDER COMPONENT
-    // if (this.showModal === false && this.position === -1) {
-    //   this.arrayOrder.push(this.item);
-    //   this.arrExtras = [];
-    //   this.priceExtras = 0;
-    //   this.changeModalValue = 0;
-
-    // }
-
-    // this.arrayOrder.next(value);
-  //   console.log(this.arrayOrder);
-
-  // }
+  deleteItem(item) {
+    const position = this.newArray.findIndex((product) => product['id'] === item.id);
+    if (position !== -1) {
+      this.newArray.splice(position, 1);
+    }
+    this.arrayOrder.next(this.newArray);
+  }
 }

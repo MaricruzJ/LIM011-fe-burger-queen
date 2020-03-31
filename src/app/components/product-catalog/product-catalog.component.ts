@@ -13,12 +13,10 @@ export class ProductCatalogComponent implements OnInit {
   public productsFilter: any[];
   public productsExtras: any[];
 
-  constructor(private firestoreService: FirestoreService) {
-
-  }
+  constructor(private firestoreService: FirestoreService) {  }
 
   ngOnInit(): void {
-    this.firestoreService.getProducts().subscribe((productsSnapshot) => {
+    this.firestoreService.  ().subscribe((productsSnapshot) => {
       this.products = [];
       productsSnapshot.forEach((productData: any) => {
         this.products.push({

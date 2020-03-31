@@ -1,25 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement} from '@angular/core';
 import { HeaderComponent } from './header.component';
 
-xdescribe('HeaderComponent', () => {
+describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let a: HTMLElement;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
-  }));
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ HeaderComponent ]
+    });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    a = fixture.nativeElement.querySelector('a');
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('no hay etiqueta a en el DOM despues de createComponent()', () => {
+    expect(a.textContent).toEqual('');
   });
+
+  it('debe mostrar el título original', () => {
+    fixture.detectChanges();
+    expect(a.textContent).toContain(component.title);
+  });
+
+it('debería mostrar el título original después de detectChanges()', () => {
+  fixture.detectChanges();
+  expect(a.textContent).toContain(component.title);
+});
+
+it('debería mostrar un título si se cambia de título', () => {
+  component.title = 'Burger Kings';
+  fixture.detectChanges();
+  expect(a.textContent).toContain('Burger Kings');
+});
 });

@@ -11,8 +11,8 @@ import { FirestoreService } from 'src/app/services/firestore/firestore.service';
 export class OrderComponent implements OnInit {
 
   public quantity = 1;
-  arrOrder: object[];
-  objectItem: object;
+  position = 0;
+  arrOrder = [];
   indice: string;
   amount = 0;
   orderForm = new FormGroup({
@@ -20,9 +20,7 @@ export class OrderComponent implements OnInit {
     numberTable: new FormControl(0),
   });
 
-  constructor(private orderService: OrderService, private firestoreService: FirestoreService) {
-
-  }
+  constructor(private orderService: OrderService, private firestoreService: FirestoreService) { }
 
   ngOnInit(): void {
     this.getOrder();
@@ -31,58 +29,31 @@ export class OrderComponent implements OnInit {
   getOrder() {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
-      console.log(this.arrOrder);
       this.amount = 0;
       this.arrOrder.forEach(product => {
-        this.amount = product['amount'] + this.amount;
+        this.amount = product.amount + this.amount;
       });
     });
   }
+  add(objectItem) {
+    this.orderService.addQuantity(objectItem);
+  }
 
-  // add(objectItem) {
-  //   this.indice = this.arrOrder.indexOf(objectItem).toString();
-  //   this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity + 1;
-  //   this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-  //   this.amount = 0;
-  //   this.arrOrder.forEach(product => {
-  //     this.amount = product['amount'] + this.amount;
-  //   });
-  // }
+  subtract(objectItem) {
+    this.orderService.subtractQuantity(objectItem);
+  }
 
-  // subtract(objectItem) {
-  //   this.indice = this.arrOrder.indexOf(objectItem).toString();
-  //   if (this.arrOrder[this.indice].quantity >= 1) {
-  //     this.arrOrder[this.indice].quantity = this.arrOrder[this.indice].quantity - 1;
-  //     this.arrOrder[this.indice].amount = this.arrOrder[this.indice].priceUnit * this.arrOrder[this.indice].quantity;
-  //   }
-  //   if (this.arrOrder[this.indice].quantity === 0) {
-  //     this.deleteItem(objectItem);
-  //   }
-  //   this.amount = 0;
-  //   this.arrOrder.forEach(product => {
-  //     this.amount = product['amount'] + this.amount;
-  //   });
-  // }
-
-  // deleteItem(objectItem) {
-  //   const position = this.arrOrder.findIndex((product) => product['id'] === objectItem.id);
-  //   if (position !== -1) {
-  //     this.arrOrder.splice(position, 1);
-  //   }
-  //   this.amount = 0;
-  //   this.arrOrder.forEach(product => {
-  //     this.amount = product['amount'] + this.amount;
-  //   });
-  // }
+  deleteItem(objectItem) {
+    this.orderService.deleteItem(objectItem);
+  }
 
   sendOrder() {
     this.arrOrder.forEach(product => {
-      this.amount = product['amount'] + this.amount;
+      this.amount = product.amount + this.amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
     this.orderForm.value.amount = this.amount;
-    console.log(this.orderForm.value);
     // enviar al firestore
     this.firestoreService.setOrder(this.orderForm.value);
   }

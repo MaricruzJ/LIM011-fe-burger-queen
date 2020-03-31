@@ -14,16 +14,11 @@ export class ProductComponent implements OnInit {
   public newProductSelected: any = {};
   public productSelected: any = {};
   public item: OrderItem;
-  public arrayOrder = [];
   public arrExtras = [];
   priceExtras = 0;
   changeModalValue = 0;
 
-  constructor(private orderService: OrderService) {
-    this.orderService.currentOrder.subscribe(array => {
-      this.arrayOrder = array;
-    });
-  }
+  constructor(private orderService: OrderService) { }
 
   ngOnInit(): void { }
 
@@ -34,14 +29,14 @@ export class ProductComponent implements OnInit {
     });
   }
 
-  toggleModal = (id: string) => {
+  getItem = (id: string) => {
     console.log(this.changeModalValue);
 
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }
 
-    // AGREGAR IDENTIFICADOR AL ID DEL ITEM, CON NOMBRES DE LOS EXTRAS
+    // Agregar identificador al ID del item, con nombres de los extras.
     const letra = [];
     this.arrExtras.forEach((elem) => {
       if (elem.data.name !== '') {
@@ -61,7 +56,7 @@ export class ProductComponent implements OnInit {
       }
     }
 
-    // CREACION DEL ITEM
+    // Creación del item
     if (this.changeModalValue !== 1) {
       this.item = {
         id: this.newProductSelected.id + letra,
@@ -71,7 +66,7 @@ export class ProductComponent implements OnInit {
         amount: this.newProductSelected.data.price + this.priceExtras,
         priceUnit: this.newProductSelected.data.price + this.priceExtras,
       };
-      this.orderService.addProductTOOrder(this.item);
+      this.orderService.insertProductToOrder(this.item);
       this.arrExtras = [];
       this.productSelected = {};
       this.newProductSelected = {};

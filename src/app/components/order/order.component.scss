@@ -4,13 +4,28 @@
    align-items: center;
  }
 
- .quantity label{
+ .quantity span{
    margin: 0px 4px;
  }
 
+ .contain-table{
+   margin: 8px 0px;
+   border: 2px solid #c2ccd6;
+   max-height: 400px !important;
+   overflow-y: scroll !important;
+ }
+
  table{
-   margin-top: 8px;
-   border: 2px solid #e9ecef;
-  //  height: 300px;
-  //  overflow-y: scroll;
+   margin: 0px;
+ }
+
+ .amount{
+  background-color: #E9ECEF;
+  font-weight: 600;
+  color: #525252;
+ }
+
+ .btn-send{
+   background-color: #ff5608;
+   color: white;
  }
