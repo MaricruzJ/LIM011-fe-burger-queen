@@ -31,8 +31,6 @@ export class ProductComponent implements OnInit {
   }
 
   getItem = (id: string) => {
-    console.log(this.changeModalValue);
-
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }

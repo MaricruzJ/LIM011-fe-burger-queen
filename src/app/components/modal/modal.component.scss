@@ -1,3 +1,31 @@
+.selected{
+  border: solid 1px #c9c9c9;
+  background-color: #eeeeee;
+  padding: 8px 24px;
+  border-radius: 4px;
+}
+
+.selected:hover{
+  cursor: pointer;
+}
+
+.selected:active {
+  background-color: yellow;  
+}
+
+.btn-primary{
+  background-color: #ff5608;
+  color: white;
+  border: 1px solid #ff5608;;
+}
+
+.btn-primary:hover{
+  background-color: #e24801;
+  color: white;
+  border: 1px solid #e24801;;
+}
+
+
 @media (max-width: 319px) {
   .modal {
     position: fixed;
@@ -34,7 +62,7 @@
     width: 265px;
   }
   
-  .modal .modal_content > h2 {
+  .modal .modal_content > h3 {
     font-size: 28px;
     font-weight: 200;
     margin: 20px 0 40px;
@@ -61,7 +89,6 @@
     height: 80px;
     width: 80px;
     border-radius: 25%;
-    border: solid 1px #c9c9c9;
     padding: 8px;
     margin-top: 16px;
   }
@@ -107,7 +134,7 @@
     text-align: center;
     border-radius: 4px;
     width: 265px;
-    h2{
+    h3{
       color: #0074C5;
     }
     .container{
@@ -116,7 +143,7 @@
     }
   }
   
-  .modal .modal_content > h2 {
+  .modal .modal_content > h3 {
     font-size: 28px;
     font-weight: 200;
     margin: 20px 0 40px;
@@ -147,7 +174,6 @@
     height: 80px;
     width: 80px;
     border-radius: 25%;
-    border: solid 1px #c9c9c9;
     padding: 8px;
     margin-top: 16px;
   }
@@ -156,10 +182,6 @@
     font-size: 18px;
     margin: 0px;
   }
-}
-.hola:active {
-  color: #0074C5;
-  background-color: yellow;
 }
 
 @media (min-width: 480px) {}
