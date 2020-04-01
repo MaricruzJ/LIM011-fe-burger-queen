@@ -22,30 +22,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.76% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/17</span>
+                <span class='fraction'>16/16</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/9</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/12</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
@@ -54,7 +54,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -93,9 +93,7 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a>
-<a name='L40'></a><a href='#L40'>40</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L38'></a><a href='#L38'>38</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -110,28 +108,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
@@ -149,28 +145,26 @@ export class ProductCatalogComponent implements OnInit {
   public productsFilter: any[];
   public productsExtras: any[];
 &nbsp;
-<span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >f</span>irestoreService: F</span>irestoreService) {  }
+  constructor(private firestoreService: FirestoreService) {  }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  ngOnInit(</span>): void {
-<span class="cstat-no" title="statement not covered" >    this.firestoreService.getProducts().subscribe(<span class="fstat-no" title="function not covered" >(p</span>roductsSnapshot) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >      this.products = [];</span>
-<span class="cstat-no" title="statement not covered" >      productsSnapshot.forEach(<span class="fstat-no" title="function not covered" >(p</span>roductData: any) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        this.products.push({</span>
-          id: productData.payload.doc.id,
-          data: productData.payload.doc.data()
-        });
-      });
-<span class="cstat-no" title="statement not covered" >      this.productsFilter = this.products.filter(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; <span class="cstat-no" title="statement not covered" >product.data.category === 'classic')</span>;</span>
-<span class="cstat-no" title="statement not covered" >      this.productsExtras = this.products.filter(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; <span class="cstat-no" title="statement not covered" >product.data.category === 'extras')</span>;</span>
+  ngOnInit(): void {
+    this.firestoreService.getProducts().subscribe((productsSnapshot) =&gt; {
+      this.products = productsSnapshot;
+      // productsSnapshot.forEach((productData: any) =&gt; {
+      //   this.products.push(productData);
+      // });
+      this.productsFilter = this.products.filter((product) =&gt; product.data.category === 'classic');
+      this.productsExtras = this.products.filter((product) =&gt; product.data.category === 'extras');
     });
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  getByCategory(</span>nameCategory: string) {
-<span class="cstat-no" title="statement not covered" >    this.productsFilter = this.products.filter(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; <span class="cstat-no" title="statement not covered" >product.data.category === nameCategory)</span>;</span>
-<span class="cstat-no" title="statement not covered" >    this.productsExtras = [];</span>
-<span class="cstat-no" title="statement not covered" >    if (nameCategory === 'classic') {</span>
-<span class="cstat-no" title="statement not covered" >      this.productsExtras = this.products.filter(<span class="fstat-no" title="function not covered" >(p</span>roduct) =&gt; <span class="cstat-no" title="statement not covered" >product.data.category === 'extras')</span>;</span>
+  getByCategory(nameCategory: string) {
+    this.productsFilter = this.products.filter((product) =&gt; product.data.category === nameCategory);
+    this.productsExtras = [];
+    if (nameCategory === 'classic') {
+      this.productsExtras = this.products.filter((product) =&gt; product.data.category === 'extras');
     }
+    return this.productsFilter;
   }
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -180,7 +174,7 @@ export class ProductCatalogComponent implements OnInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Mar 30 2020 11:08:10 GMT-0500 (Peru Standard Time)
+                at Wed Apr 01 2020 17:04:16 GMT-0500 (Peru Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

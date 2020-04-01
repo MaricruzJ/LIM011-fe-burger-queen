@@ -1,22 +1,27 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirestoreService {
-  constructor(private firestore: AngularFirestore) { }
 
-  public getProducts() {
-    return this.firestore.collection('products').snapshotChanges();
+  constructor(private angularFirestore: AngularFirestore) { }
+
+  getProducts() {
+  
+    return this.angularFirestore.collection('products').snapshotChanges()
+    .pipe(
+      map(actions => actions.map(action => {
+        const id = action.payload.doc.id;
+        const data = action.payload.doc.data();
+        return { id: id, data: data};
+      }))
+    );  
   }
 
-  public setOrder(order) {
-    this.firestore.collection('orders').add(order).then((docRef) => {
-      console.log('Document written with ID: ', docRef.id);
-    }).catch((error) => {
-      console.log('Error adding document: ', error);
-    });
+  public setOrder(order: any[]) {
+    return this.angularFirestore.collection('orders').add(order)
   }
 }
