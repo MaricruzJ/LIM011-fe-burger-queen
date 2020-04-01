@@ -1,19 +1,24 @@
+.row{
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+}
+
 .contain-buttons{
   width: 100%;
-  text-align: center;
-  box-sizing: border-box;
+  display: flex !important;
+  justify-content: space-around !important;
 }
 
 button {
-  margin: 0px 8px;
-  border-color: #000094;
+  border-color: none;
   background-color: #000094;
   color: white;
+  font-size: 13px;
 }
 
 button:hover{
   color: white;
-  border-color: #006;
+  border-color: none;
   background-color: #006;
 }
 
@@ -23,5 +28,6 @@ app-product {
   width: 100%;
   justify-content: space-around;
   box-sizing: border-box;
+  align-items: center;
 }
 

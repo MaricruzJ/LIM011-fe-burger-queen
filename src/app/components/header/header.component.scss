@@ -27,7 +27,19 @@ nav{
   margin-bottom: 8px;
 }
 
+.content-brand{
+  text-align: left !important;
+}
+
+.nav-item{
+  text-align: center !important;
+}
+
 @media (max-width: 990px){
+  .content-brand{
+    text-align: center !important;
+  }
+
   .bg-yellow{
     background-color:  rgb(255, 239, 8);
   }

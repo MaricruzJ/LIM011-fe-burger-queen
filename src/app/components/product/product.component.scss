@@ -4,14 +4,16 @@
 }
 
 .card{
+  display: flex;
+  justify-content: center;
+  height: 130px;
   text-align: center;
   align-items: center;
-  padding: 0px;
+  padding: 8px 4px;
 }
 
-img{
-  width: 100px !important;
-  height: auto;
+.img-amount{
+  height: 130px;
 }
 
 .container-detail{
@@ -19,11 +21,26 @@ img{
 }
 
 .name-product{
-  height: 44px;
+  height: 60px;
   background-color: #fff;
   color: #333;
 }
 
 p{
   margin-bottom: 4px;
+}
+
+.img-fluid{
+  height: 100px;
+}
+
+@media(max-width: 768px){
+  .row{
+    flex-wrap: nowrap;
+    height: 130px;
+    .card-body{
+      display: flex;
+      align-items: center;
+    }
+  }
 }

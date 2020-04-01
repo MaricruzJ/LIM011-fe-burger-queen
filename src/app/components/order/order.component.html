@@ -1,4 +1,4 @@
-<form [formGroup]="orderForm" (ngSubmit)="sendOrder()">
+<form [formGroup]="orderForm" (submit)="sendOrder()" class="col-12">
   <div class="row">
     <div class="contain-customer col-12">
       <label for="">Cliente</label>
@@ -18,9 +18,9 @@
       <tbody>
         <tr *ngFor="let item of arrOrder">
         <td class="quantity">
-          <button type="button" class="form-control" (click)="subtractItem(item)">-</button>
+          <button type="button" class="form-control btn-subtract" (click)="subtractItem(item)">-</button>
           <span> {{ item.quantity }} </span>
-          <button type="button" class="form-control" (click)="addItem(item)">+</button>
+          <button type="button" class="form-control btn-add" (click)="addItem(item)">+</button>
         </td>
         <td>
         <tr>{{ item.product }} </tr>
@@ -40,5 +40,5 @@
       </tbody>    
     </table>
   </div>
-  <button type="submit" class="btn btn-send col-md-4 offset-md-8">Enviar a cocina</button>
+  <button type="submit" class="btn btn-send col-sm-12 offset-lg-0">Enviar a cocina</button>
 </form>

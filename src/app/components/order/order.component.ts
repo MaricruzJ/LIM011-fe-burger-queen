@@ -28,6 +28,7 @@ export class OrderComponent implements OnInit {
   getOrder() {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
+      console.log(this.arrOrder);
       this.amount = 0;
       this.arrOrder.forEach(product => {
         this.amount = product.amount + this.amount;
@@ -63,7 +64,7 @@ export class OrderComponent implements OnInit {
       this.orderForm.patchValue({
         nameCustomer: ''
       });
-      this.arrOrder = [];
+      this.orderService.resetOrder();
     }
   }
 }
