@@ -30,17 +30,15 @@ export class ProductComponent implements OnInit {
   }
 
   getItem = (id: string) => {
-    console.log(this.changeModalValue);
-
     if (id != null) {
       this.productSelected = this.products.find((product) => product.id === id);
     }
 
     // Agregar identificador al ID del item, con nombres de los extras.
     const letra = [];
-    this.arrExtras.forEach((elem) => {
-      if (elem.data.name !== '') {
-        letra.push(elem.data.name.slice(0, 1));
+    this.arrExtras.forEach((product) => {
+      if (product.data.name !== '') {
+        letra.push(product.data.name.slice(0, 1));
         letra.sort();
       }
     });

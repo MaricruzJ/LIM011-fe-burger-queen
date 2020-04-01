@@ -58,4 +58,9 @@ export class OrderService {
     }
     this.arrayOrder.next(this.newArray);
   }
+
+  resetOrder() {
+    this.newArray = [];
+    this.arrayOrder.next(this.newArray);
+  }
 }

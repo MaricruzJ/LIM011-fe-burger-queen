@@ -17,7 +17,6 @@ export class OrderComponent implements OnInit {
   amount = 0;
   orderForm = new FormGroup({
     nameCustomer: new FormControl(''),
-    numberTable: new FormControl(0),
   });
 
   constructor(private orderService: OrderService, private firestoreService: FirestoreService) { }
@@ -29,17 +28,18 @@ export class OrderComponent implements OnInit {
   getOrder() {
     this.orderService.currentOrder.subscribe(array => {
       this.arrOrder = array;
+      console.log(this.arrOrder);
       this.amount = 0;
       this.arrOrder.forEach(product => {
         this.amount = product.amount + this.amount;
       });
     });
   }
-  add(objectItem) {
+  addItem(objectItem) {
     this.orderService.addQuantity(objectItem);
   }
 
-  subtract(objectItem) {
+  subtractItem(objectItem) {
     this.orderService.subtractQuantity(objectItem);
   }
 
@@ -48,13 +48,22 @@ export class OrderComponent implements OnInit {
   }
 
   sendOrder() {
+    this.amount = 0;
     this.arrOrder.forEach(product => {
       this.amount = product.amount + this.amount;
     });
     this.orderForm.value.items = this.arrOrder;
     this.orderForm.value.date = new Date();
     this.orderForm.value.amount = this.amount;
-    // enviar al firestore
-    this.firestoreService.setOrder(this.orderForm.value);
+
+    if (this.arrOrder.length > 0 && this.orderForm.value.nameCustomer !== '') {
+      // enviar al firestore solo si hay items en la orden.
+      this.firestoreService.setOrder(this.orderForm.value);
+      // Limpiar contenido del input y tabla.
+      this.orderForm.patchValue({
+        nameCustomer: ''
+      });
+      this.orderService.resetOrder();
+    }
   }
 }

@@ -1,9 +1,16 @@
-<div class="container-card col-4" *ngFor="let product of products" (click)="getItem(product.id)">
+<div [ngClass]="{'col-sm-12 col-md-6 col-lg-4':product.data.category === 'classic', 'col-sm-12 col-md-4': product.data.category ==='drinks' ||product.data.category ==='piqueos', 'container-card':true }"
+    *ngFor="let product of products" (click)="getItem(product.id)">
     <div class="card">
-        <img [src]="product.data.image" alt="image of product">
-        <div class="container-detail col-12">
-            <p class="name-product">{{ product.data.name }}</p>
-            <p>{{ '$ ' }}{{ product.data.price }}</p>
+        <div class="row no-gutters">
+            <div class="col-md-4 img-amount">
+                <img [src]="product.data.image" alt="image of product" class="img-fluid">
+                <p class="card-text font-weight-bold">{{ '$ ' }}{{ product.data.price }}</p>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body col-12">
+                    <p class="card-text">{{ product.data.name }}</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
