@@ -13,7 +13,6 @@ export class ProductComponent implements OnInit {
   showModal = false;
   public newProductSelected: any = {};
   public productSelected: any = {};
-  public showExtras: any = {};
   public item: OrderItem;
   public arrExtras = [];
   priceExtras = 0;

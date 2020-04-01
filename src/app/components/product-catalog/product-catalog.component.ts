@@ -17,13 +17,10 @@ export class ProductCatalogComponent implements OnInit {
 
   ngOnInit(): void {
     this.firestoreService.getProducts().subscribe((productsSnapshot) => {
-      this.products = [];
-      productsSnapshot.forEach((productData: any) => {
-        this.products.push({
-          id: productData.payload.doc.id,
-          data: productData.payload.doc.data()
-        });
-      });
+      this.products = productsSnapshot;
+      // productsSnapshot.forEach((productData: any) => {
+      //   this.products.push(productData);
+      // });
       this.productsFilter = this.products.filter((product) => product.data.category === 'classic');
       this.productsExtras = this.products.filter((product) => product.data.category === 'extras');
     });
@@ -35,5 +32,6 @@ export class ProductCatalogComponent implements OnInit {
     if (nameCategory === 'classic') {
       this.productsExtras = this.products.filter((product) => product.data.category === 'extras');
     }
+    return this.productsFilter;
   }
 }

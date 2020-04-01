@@ -35,7 +35,6 @@ export class OrderComponent implements OnInit {
       });
     });
   }
-
   addItem(objectItem) {
     this.orderService.addQuantity(objectItem);
   }
