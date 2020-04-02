@@ -96,7 +96,7 @@ fdescribe('ProductCatalogComponent', () => {
 
   // ejecución de getByCategory según el tipo de botón que se presiona
 
-  it('debería llamar a getByCategory(drinks) cuando se presiona el botón drinks', () => {
+/*   it('debería llamar a getByCategory(drinks) cuando se presiona el botón drinks', () => {
     const mockProducts = productsMock;
     component.products = mockProducts;
     component.ngOnInit();
@@ -108,7 +108,7 @@ fdescribe('ProductCatalogComponent', () => {
     fixture.detectChanges();
 
     expect(component.getByCategory).toHaveBeenCalled();
-  })
+  }) */
 
   it('getByCategory con el argumento drinks debería dar el arrayFilter del producto que sea de esa categoría', () => {
     const mockProducts = productsMock;

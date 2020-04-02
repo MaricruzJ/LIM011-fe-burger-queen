@@ -4,6 +4,4 @@ export class MockFirestoreService {
   getProducts() {
       return of([]);
   }
-
-  // addTask() {}
 }

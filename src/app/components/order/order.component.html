@@ -1,8 +1,8 @@
 <form [formGroup]="orderForm" (submit)="sendOrder()" class="col-12">
   <div class="row">
     <div class="contain-customer col-12">
-      <label for="">Cliente</label>
-      <input type="text" class="customer form-control" formControlName="nameCustomer" required>
+      <label for="customer">Cliente</label>
+      <input type="text" id="customer" class="customer form-control" formControlName="nameCustomer" required>
     </div>
   </div>
   <div class="contain-table">

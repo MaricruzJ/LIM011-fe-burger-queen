@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement} from '@angular/core';
+import { DebugElement } from '@angular/core';
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -10,7 +10,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
+      declarations: [HeaderComponent]
     });
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
@@ -26,14 +26,14 @@ describe('HeaderComponent', () => {
     expect(a.textContent).toContain(component.title);
   });
 
-it('debería mostrar el título original después de detectChanges()', () => {
-  fixture.detectChanges();
-  expect(a.textContent).toContain(component.title);
-});
+  it('debería mostrar el título original después de detectChanges()', () => {
+    fixture.detectChanges();
+    expect(a.textContent).toContain(component.title);
+  });
 
-it('debería mostrar un título si se cambia de título', () => {
-  component.title = 'Burger Kings';
-  fixture.detectChanges();
-  expect(a.textContent).toContain('Burger Kings');
-});
+  it('debería mostrar un título si se cambia de título', () => {
+    component.title = 'Burger Queen';
+    fixture.detectChanges();
+    expect(a.textContent).toContain('Burger Queen');
+  });
 });

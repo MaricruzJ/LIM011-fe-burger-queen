@@ -22,16 +22,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">8.33% </span>
+                <span class="strong">6.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>2/24</span>
+                <span class='fraction'>2/29</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -43,9 +43,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.55% </span>
+                <span class="strong">3.7% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>1/22</span>
+                <span class='fraction'>1/27</span>
             </div>
         
             
@@ -115,7 +115,16 @@
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
 <a name='L59'></a><a href='#L59'>59</a>
-<a name='L60'></a><a href='#L60'>60</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -136,7 +145,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -149,6 +157,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -167,12 +176,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order/order.service';
@@ -193,7 +211,6 @@ export class OrderComponent implements OnInit {
 <span class="cstat-no" title="statement not covered" >  amount = 0;</span>
 <span class="cstat-no" title="statement not covered" >  orderForm = new FormGroup({</span>
     nameCustomer: new FormControl(''),
-    numberTable: new FormControl(0),
   });
 &nbsp;
 <span class="fstat-no" title="function not covered" >  constructor(private <span class="cstat-no" title="statement not covered" >o</span>rderService: O</span>rderService, private <span class="cstat-no" title="statement not covered" >firestoreService: F</span>irestoreService) { }
@@ -205,17 +222,18 @@ export class OrderComponent implements OnInit {
 <span class="fstat-no" title="function not covered" >  getOrder(</span>) {
 <span class="cstat-no" title="statement not covered" >    this.orderService.currentOrder.subscribe(<span class="fstat-no" title="function not covered" >array </span>=&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      this.arrOrder = array;</span>
+<span class="cstat-no" title="statement not covered" >      console.log(this.arrOrder);</span>
 <span class="cstat-no" title="statement not covered" >      this.amount = 0;</span>
 <span class="cstat-no" title="statement not covered" >      this.arrOrder.forEach(<span class="fstat-no" title="function not covered" >product </span>=&gt; {</span>
 <span class="cstat-no" title="statement not covered" >        this.amount = product.amount + this.amount;</span>
       });
     });
   }
-<span class="fstat-no" title="function not covered" >  add(</span>objectItem) {
+<span class="fstat-no" title="function not covered" >  addItem(</span>objectItem) {
 <span class="cstat-no" title="statement not covered" >    this.orderService.addQuantity(objectItem);</span>
   }
 &nbsp;
-<span class="fstat-no" title="function not covered" >  subtract(</span>objectItem) {
+<span class="fstat-no" title="function not covered" >  subtractItem(</span>objectItem) {
 <span class="cstat-no" title="statement not covered" >    this.orderService.subtractQuantity(objectItem);</span>
   }
 &nbsp;
@@ -224,14 +242,23 @@ export class OrderComponent implements OnInit {
   }
 &nbsp;
 <span class="fstat-no" title="function not covered" >  sendOrder(</span>) {
+<span class="cstat-no" title="statement not covered" >    this.amount = 0;</span>
 <span class="cstat-no" title="statement not covered" >    this.arrOrder.forEach(<span class="fstat-no" title="function not covered" >product </span>=&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      this.amount = product.amount + this.amount;</span>
     });
 <span class="cstat-no" title="statement not covered" >    this.orderForm.value.items = this.arrOrder;</span>
 <span class="cstat-no" title="statement not covered" >    this.orderForm.value.date = new Date();</span>
 <span class="cstat-no" title="statement not covered" >    this.orderForm.value.amount = this.amount;</span>
-    // enviar al firestore
-<span class="cstat-no" title="statement not covered" >    this.firestoreService.setOrder(this.orderForm.value);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.arrOrder.length &gt; 0 &amp;&amp; this.orderForm.value.nameCustomer !== '') {</span>
+      // enviar al firestore solo si hay items en la orden.
+<span class="cstat-no" title="statement not covered" >      this.firestoreService.setOrder(this.orderForm.value);</span>
+      // Limpiar contenido del input y tabla.
+<span class="cstat-no" title="statement not covered" >      this.orderForm.patchValue({</span>
+        nameCustomer: ''
+      });
+<span class="cstat-no" title="statement not covered" >      this.orderService.resetOrder();</span>
+    }
   }
 }</pre></td></tr></table></pre>
 
@@ -240,7 +267,7 @@ export class OrderComponent implements OnInit {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Apr 01 2020 17:04:16 GMT-0500 (Peru Standard Time)
+                at Wed Apr 01 2020 18:47:25 GMT-0500 (Peru Standard Time)
             </div>
         </div>
         <script src="../../../../prettify.js"></script>

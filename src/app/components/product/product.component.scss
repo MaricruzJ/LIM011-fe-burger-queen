@@ -10,28 +10,15 @@
   text-align: center;
   align-items: center;
   padding: 8px 4px;
-}
-
-.img-amount{
-  height: 130px;
-}
-
-.container-detail{
-  padding: 0px;
-}
-
-.name-product{
-  height: 60px;
-  background-color: #fff;
-  color: #333;
-}
-
-p{
-  margin-bottom: 4px;
-}
-
-.img-fluid{
-  height: 100px;
+  .img-amount{
+    height: 130px;
+    .img-fluid{
+      height: 100px;
+    }
+  }
+  p{
+    margin-bottom: 4px;
+  }
 }
 
 @media(max-width: 768px){

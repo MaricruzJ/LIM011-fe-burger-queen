@@ -1,8 +1,8 @@
 import { of } from 'rxjs';
 
 export class AngularFirestoreMock {
-  constructor(private data){
-    this.data = data
+  constructor(private data) {
+    this.data = data;
   }
 
   snapshotChanges() {
@@ -14,15 +14,15 @@ export class AngularFirestoreMock {
             data: () => doc.data
           }
         }
-      }
-    })
-    return of(actions)
+      };
+    });
+    return of(actions);
   }
 
   collection(nameCollection) {
     return {
       // add: (objData) => this.add(objData, nameCollection),
-      snapshotChanges: () =>  this.snapshotChanges()
-    }
+      snapshotChanges: () => this.snapshotChanges()
+    };
   }
 }
